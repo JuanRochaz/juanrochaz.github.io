@@ -211,6 +211,21 @@ img {
   color: var(--accent);
 }
 
+/* Link "Versão planilha": discreto, separado dos links de seção */
+.theme-switch {
+  gap: 8px;
+  color: var(--text-muted);
+  padding-left: 20px !important;
+  border-left: 1px solid var(--border-strong);
+}
+
+.theme-switch:hover { color: var(--accent); }
+
+/* Em telas médias, menos espaço entre os links para tudo caber */
+@media (min-width: 721px) and (max-width: 1000px) {
+  .nav-links { gap: 18px; }
+}
+
 .btn-pill {
   padding: 10px 18px;
   border: 1px solid var(--accent);
@@ -743,6 +758,13 @@ img {
   .nav-links.is-open { display: flex; }
 
   .nav-links a:not(.btn-pill) { padding: 0 4px; }
+  /* no menu do celular o separador vira uma linha em cima */
+  .theme-switch {
+    border-left: 0;
+    border-top: 1px solid var(--border);
+    padding-left: 4px !important;
+    margin-top: 4px;
+  }
   .btn-pill { justify-content: center; margin-top: 8px; }
 
   .hero { padding-top: 56px; padding-bottom: 64px; gap: 40px; }

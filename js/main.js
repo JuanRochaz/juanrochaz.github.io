@@ -3,7 +3,8 @@
    1. Ano automático no rodapé
    2. Menu mobile (botão hambúrguer)
    3. Destacar no menu a seção que está na tela
-   4. Montar os cards de projetos a partir de data/projetos.js
+   4. Trocar de versão mantendo a seção atual
+   5. Montar os cards de projetos a partir de data/projetos.js
    ========================================================= */
 
 
@@ -55,12 +56,14 @@ if (botaoMenu && menu) {
    quando uma delas entra no meio da tela. */
 const linksMenu = document.querySelectorAll('.nav-links a[href^="#"]');
 const secoes = document.querySelectorAll('main section[id]');
+let secaoVisivel = ''; // guardada para a troca de versão (parte 4)
 
 const observador = new IntersectionObserver(function (entradas) {
   entradas.forEach(function (entrada) {
     if (!entrada.isIntersecting) return;
 
     const idVisivel = entrada.target.id;
+    secaoVisivel = idVisivel;
     linksMenu.forEach(function (link) {
       const ehOAtual = link.getAttribute('href') === '#' + idVisivel;
       if (ehOAtual) {
@@ -77,7 +80,30 @@ secoes.forEach(function (secao) {
 });
 
 
-/* ---------- 4. PROJETOS ----------
+/* ---------- 4. TROCAR DE VERSÃO (escura ↔ planilha) ----------
+   As duas versões têm as mesmas seções (#sobre, #projetos...).
+   Ao trocar, levamos o visitante para a mesma seção que ele estava
+   lendo, em vez de jogá-lo de volta para o topo. */
+document.querySelectorAll('[data-trocar-versao]').forEach(function (link) {
+  // O link aponta para a pasta ("versao-2/" ou "../"), que funciona no
+  // GitHub Pages. Aberto com dois cliques (file://), o navegador mostraria
+  // a lista de arquivos da pasta, então completamos com "index.html".
+  if (location.protocol === 'file:' && link.href.endsWith('/')) {
+    link.href = link.href + 'index.html';
+  }
+
+  link.addEventListener('click', function (evento) {
+    // Ctrl/Cmd/Shift + clique (abrir em nova aba): deixa o navegador agir
+    if (evento.ctrlKey || evento.metaKey || evento.shiftKey || evento.button !== 0) return;
+    if (!secaoVisivel || secaoVisivel === 'topo') return; // no topo, link normal
+
+    evento.preventDefault();
+    location.href = link.href.split('#')[0] + '#' + secaoVisivel;
+  });
+});
+
+
+/* ---------- 5. PROJETOS ----------
    Os dados ficam em data/projetos.js (variável window.PROJETOS).
    Para adicionar um projeto, edite só esse arquivo — não o HTML.
    Por ser um <script> (e não um fetch de JSON), funciona até
