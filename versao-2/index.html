@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Juan Rocha — Da planilha ao código</title>
+  <meta name="description" content="Portfólio de Juan Rocha: gerente de RH e administrativo, estudante de Análise e Desenvolvimento de Sistemas, transformando rotinas de escritório em software.">
+  <meta name="theme-color" content="#FFFFFF">
+
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap">
+
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Mesmos dados e mesmo script da versão 1: editar um projeto atualiza as duas -->
+  <script src="../data/projetos.js" defer></script>
+  <script src="../js/main.js" defer></script>
+</head>
+<body>
+
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="app-bar">
+    <div class="wrap app-bar-inner">
+      <a class="brand" href="#topo">Juan Rocha</a>
+      <a class="app-bar-link" href="#contato">Fale comigo</a>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- ============ INÍCIO: a "planilha" ============ -->
+    <section id="topo" class="sheet" aria-labelledby="hero-title">
+
+      <!-- Barra de fórmulas: decorativa, mas o texto é lido como frase -->
+      <div class="formula-bar">
+        <div class="wrap formula-bar-inner">
+          <span class="name-box" aria-hidden="true">A1</span>
+          <span class="fx" aria-hidden="true">fx</span>
+          <p class="formula"><span class="sr-only">Minha regra de trabalho: </span><span class="formula-text">=SE(tarefa="repetitiva"; AUTOMATIZAR(tarefa); tarefa)</span></p>
+        </div>
+      </div>
+
+      <!-- Letras das colunas, como no topo de uma planilha -->
+      <div class="wrap">
+        <div class="col-heads" aria-hidden="true">
+          <span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span>
+        </div>
+      </div>
+
+      <!-- Os números das linhas (1, 2, 3) são gerados pelo CSS (counter) -->
+      <div class="wrap hero">
+        <div class="hero-cells">
+          <div class="cell-selected">
+            <h1 id="hero-title">Da planilha ao código.</h1>
+          </div>
+          <p class="hero-lead">Sou Juan Rocha, gerente de RH e administrativo. Passo o dia entre folha de ponto, benefícios e contas a pagar — e estou aprendendo a transformar essas rotinas em software. Estudante de Análise e Desenvolvimento de Sistemas na Estácio.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#projetos">Ver projetos</a>
+            <a class="btn btn-ghost" href="#sobre">Minha história</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SOBRE ============ -->
+    <section id="sobre" class="block" aria-labelledby="sobre-title">
+      <div class="wrap">
+        <div class="block-head">
+          <h2 id="sobre-title">Um dev que entende o problema antes do código.</h2>
+          <p>Quem trabalha no administrativo sabe onde o tempo se perde: planilha copiada todo mês, conferência manual, lançamento repetido em três sistemas. É exatamente aí que quero aplicar programação.</p>
+        </div>
+
+        <ul class="cells-3">
+          <li>
+            <h3>Visão de negócio</h3>
+            <p>RH, departamento pessoal, benefícios, contas a pagar e contabilidade no dia a dia de uma empresa industrial.</p>
+          </li>
+          <li>
+            <h3>Planilhas que viram sistemas</h3>
+            <p>Uso avançado do pacote Office como ponto de partida para scripts, automações e pequenos apps web.</p>
+          </li>
+          <li>
+            <h3>Aprendizado em público</h3>
+            <p>Faculdade de ADS somada a projetos próprios. Este site é o diário de bordo dessa evolução.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ PROJETOS: uma tabela ============ -->
+    <section id="projetos" class="block" aria-labelledby="projetos-title">
+      <div class="wrap">
+        <div class="block-head">
+          <h2 id="projetos-title">Problemas reais do escritório, resolvidos com código.</h2>
+        </div>
+
+        <div class="sheet-table">
+          <!-- Cabeçalho visual da tabela (cada projeto já tem seus rótulos para leitores de tela) -->
+          <div class="sheet-table-head" aria-hidden="true">
+            <span>Projeto</span><span>O que resolve</span><span>Tecnologias</span><span>Situação</span>
+          </div>
+          <p class="projects-message" id="projetos-status" role="status">Carregando projetos…</p>
+          <!-- Linhas criadas pelo ../js/main.js a partir de ../data/projetos.js -->
+          <div id="lista-projetos"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FERRAMENTAS: checklist ============ -->
+    <section id="ferramentas" class="block" aria-labelledby="ferramentas-title">
+      <div class="wrap">
+        <div class="block-head">
+          <h2 id="ferramentas-title">O que já uso e o que estou estudando.</h2>
+        </div>
+
+        <div class="checklists">
+          <div class="checklist">
+            <h3>Uso no trabalho</h3>
+            <ul>
+              <li class="is-done">Excel avançado</li>
+              <li class="is-done">Word e Outlook</li>
+              <li class="is-done">Microsoft 365</li>
+            </ul>
+          </div>
+          <div class="checklist">
+            <h3>Estudando agora</h3>
+            <ul>
+              <li>HTML e CSS</li>
+              <li>JavaScript</li>
+              <li>Python</li>
+              <li>SQL</li>
+              <li>Git e GitHub</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ JORNADA: folha de ponto ============ -->
+    <section id="jornada" class="block" aria-labelledby="jornada-title">
+      <div class="wrap">
+        <div class="block-head">
+          <h2 id="jornada-title">Um commit de cada vez.</h2>
+          <p>Minha trajetória, registrada como numa folha de ponto.</p>
+        </div>
+
+        <div class="timesheet">
+          <div class="timesheet-head" aria-hidden="true">
+            <span>Período</span><span>Atividade</span><span>O que faço</span>
+          </div>
+          <ol>
+            <li>
+              <p class="period">[ANO]</p>
+              <h3>Administrativo</h3>
+              <p>Início na área administrativa, financeiro e contabilidade.</p>
+            </li>
+            <li>
+              <p class="period">[ANO] até hoje</p>
+              <h3>Gerente de RH na AEI Automação</h3>
+              <p>Admissões, folha de ponto, benefícios e rotinas financeiras das empresas do grupo.</p>
+            </li>
+            <li class="is-current">
+              <p class="period">Em andamento</p>
+              <h3>ADS na Estácio</h3>
+              <p>Graduação em Análise e Desenvolvimento de Sistemas, com projetos práticos paralelos.</p>
+            </li>
+            <li class="is-next">
+              <p class="period">Próximo</p>
+              <h3>Primeiro projeto no ar</h3>
+              <p>Publicar este site e o primeiro sistema completo no GitHub.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTATO ============ -->
+    <section id="contato" class="block block-contact" aria-labelledby="contato-title">
+      <div class="wrap">
+        <h2 id="contato-title">Tem uma rotina chata para automatizar? Vamos conversar.</h2>
+        <div class="actions">
+          <a class="btn btn-primary" href="mailto:[SEU-EMAIL]">Enviar e-mail</a>
+          <a class="btn btn-ghost" href="https://github.com/[SEU-USUARIO]" target="_blank" rel="noopener">GitHub<span class="sr-only"> (abre em nova aba)</span></a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/[SEU-PERFIL]" target="_blank" rel="noopener">LinkedIn<span class="sr-only"> (abre em nova aba)</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>© <span id="ano">2026</span> Juan Rocha, Sertãozinho/SP. Feito à mão, um commit de cada vez.</p>
+    </div>
+  </footer>
+
+  <!-- Abas da planilha = menu do site (o main.js marca a aba da seção visível) -->
+  <nav class="sheet-tabs" aria-label="Seções">
+    <ul class="nav-links" id="menu">
+      <li><a href="#topo">Início</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#ferramentas">Ferramentas</a></li>
+      <li><a href="#jornada">Jornada</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </nav>
+
+</body>
+</html>
