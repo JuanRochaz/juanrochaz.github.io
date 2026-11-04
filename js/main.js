@@ -107,6 +107,13 @@ function problemasDoProjeto(projeto) {
   return problemas;
 }
 
+// Os caminhos de imagem em projetos.js (ex.: "img/painel.webp") são
+// relativos à RAIZ do site. Para funcionarem também em páginas dentro
+// de subpastas (como versao-2/), calculamos a raiz a partir de onde
+// o próprio data/projetos.js foi carregado: a pasta acima de data/.
+const scriptDados = document.querySelector('script[src$="projetos.js"]');
+const raizDoSite = scriptDados ? new URL('../', scriptDados.src) : new URL('./', location.href);
+
 // Cria o HTML de UM card a partir de um objeto de projeto
 function criarCardProjeto(projeto) {
   const card = document.createElement('article');
@@ -117,10 +124,10 @@ function criarCardProjeto(projeto) {
   midia.className = 'project-media';
   if (projeto.imagem) {
     const img = document.createElement('img');
-    img.src = projeto.imagem;
+    img.src = new URL(projeto.imagem, raizDoSite).href;
     img.alt = 'Tela do projeto ' + projeto.titulo;
-    img.width = 640;
-    img.height = 360;
+    img.width = 1200; // tamanho real dos prints (1200×600)
+    img.height = 600;
     img.loading = 'lazy'; // só baixa a imagem quando chegar perto dela
     midia.appendChild(img);
   } else {

@@ -632,14 +632,18 @@ img {
 .timeline {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  border-top: 1px solid var(--border-card);
+  row-gap: 48px; /* espaço quando os itens quebram em duas fileiras */
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
+/* Cada item desenha o seu pedaço da linha. Assim, se a timeline
+   quebrar em duas fileiras, a 2ª fileira também tem linha e a
+   bolinha não cai em cima do texto de cima. */
 .timeline-item {
   position: relative;
+  border-top: 1px solid var(--border-card);
   padding: 36px 24px 0 0;
   display: flex;
   flex-direction: column;
@@ -753,12 +757,11 @@ img {
 
   /* Timeline vertical no celular */
   .timeline {
-    border-top: 0;
     border-left: 1px solid var(--border-card);
     gap: 32px;
     margin-left: 7px;
   }
 
-  .timeline-item { padding: 0 0 0 28px; }
+  .timeline-item { border-top: 0; padding: 0 0 0 28px; }
   .timeline-item::before { top: 4px; left: -8px; }
 }
