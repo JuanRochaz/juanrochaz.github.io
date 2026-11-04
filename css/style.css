@@ -1,0 +1,764 @@
+/* =========================================================
+   Portfólio Juan Rocha — estilos
+   Organização:
+   1. Tokens (variáveis)   2. Base   3. Utilitários
+   4. Nav   5. Hero   6. Seções   7. Componentes
+   8. Timeline   9. Contato / Rodapé   10. Responsivo
+   ========================================================= */
+
+/* ---------- 1. TOKENS ----------
+   Variáveis CSS: mude uma cor aqui e ela muda no site inteiro. */
+:root {
+  /* fundos */
+  --bg: #0D1117;
+  --bg-alt: #10151C;
+  --surface: #161B22;
+  --surface-2: #1C232D;
+  /* bordas */
+  --border: #222A35;
+  --border-card: #2A313C;
+  --border-strong: #333D4A;
+  --border-dashed: #4A5564;
+  --dot: #3A4350;
+  /* texto */
+  --text: #E6EDF3;
+  --text-soft: #B4BFCB;
+  --text-muted: #9BA7B4;
+  /* destaque (troque por #7CC4FF, #F2C66D ou #C79BFF para testar) */
+  --accent: #7EE2A8;
+  --blue: #7CC4FF;
+  --yellow: #F2C66D;
+  --purple: #C79BFF;
+  /* fundos dos selos de status */
+  --badge-green-bg: #1E2B24;
+  --badge-yellow-bg: #2A2418;
+  --badge-blue-bg: #1A2433;
+  /* tipografia */
+  --font-sans: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  /* layout */
+  --container: 1200px;
+  --gutter: 24px;
+  --radius-card: 16px;
+  --radius-btn: 10px;
+  --nav-height: 76px;
+
+  color-scheme: dark; /* barras de rolagem e campos nativos no modo escuro */
+}
+
+/* ---------- 2. BASE ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* largura inclui padding e borda: evita surpresas */
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height); /* âncoras não ficam escondidas atrás do menu fixo */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+h1, h2 {
+  text-wrap: balance; /* quebra títulos de forma equilibrada */
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+  touch-action: manipulation;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+/* Foco visível só para quem navega pelo teclado */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Quem pede "menos movimento" no sistema não recebe animações */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- 3. UTILITÁRIOS ---------- */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* Esconde visualmente, mas leitores de tela ainda leem */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Link "Pular para o conteúdo": aparece só ao receber foco (tecla Tab) */
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 100;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 600;
+  padding: 12px 18px;
+  border-radius: var(--radius-btn);
+}
+
+.skip-link:focus {
+  top: 16px;
+  color: var(--bg);
+}
+
+/* ---------- 4. NAV ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  /* --bg com 12% de transparência: acompanha se você trocar o --bg */
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  min-height: var(--nav-height);
+}
+
+.logo {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 500;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.logo .dot { color: var(--accent); }
+.logo .parens { color: var(--text-muted); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  font-size: 15px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a:not(.btn-pill) {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Link da seção visível na tela (marcado pelo main.js) */
+.nav-links a[aria-current="true"] {
+  color: var(--accent);
+}
+
+.btn-pill {
+  padding: 10px 18px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  color: var(--accent);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-pill:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* Botão hambúrguer: escondido no desktop */
+.nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-btn);
+  color: var(--text);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.nav-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---------- 5. HERO ---------- */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 56px;
+  padding-top: 96px;
+  padding-bottom: 80px;
+}
+
+.hero-text {
+  flex: 1 1 520px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.hero-title {
+  font-size: clamp(44px, 6vw, 80px);
+  line-height: 1.02;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.hero-lead {
+  font-size: 20px;
+  line-height: 1.55;
+  color: var(--text-soft);
+  max-width: 560px;
+}
+
+.hero-code {
+  flex: 1 1 420px;
+  min-width: 0;
+}
+
+/* ---------- 6. SEÇÕES ---------- */
+.section {
+  border-top: 1px solid var(--border);
+}
+
+.section--alt {
+  background: var(--bg-alt);
+}
+
+.section-inner {
+  padding-top: 96px;
+  padding-bottom: 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.section-head {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 720px;
+}
+
+/* Cabeçalho com texto ao lado (seção Sobre) */
+.section-head-split {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+}
+
+.section-head-split .section-head {
+  flex: 1 1 420px;
+  min-width: 0;
+}
+
+.section-head-split > p {
+  flex: 1 1 360px;
+  min-width: 0;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text-soft);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--accent);
+}
+
+.section-title {
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- 7. COMPONENTES ---------- */
+
+/* Botões */
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 14px 26px;
+  border-radius: var(--radius-btn);
+  font-size: 16px;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  color: var(--bg);
+  /* --accent misturado com 20% de branco: fica mais claro em qualquer cor */
+  background: color-mix(in srgb, var(--accent) 80%, white);
+}
+
+.btn-secondary {
+  border-color: var(--border-strong);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+}
+
+.btn-primary:active,
+.btn-secondary:active {
+  transform: translateY(1px);
+}
+
+/* Janela de código do hero */
+.code-window {
+  margin: 0; /* <figure> vem com margem padrão do navegador */
+  background: var(--surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.code-window-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-card);
+}
+
+.code-window-bar .light {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--dot);
+}
+
+.code-window-bar .filename {
+  margin-left: 10px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.code-window pre {
+  margin: 0;
+  padding: 24px;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* Cores do "realce de sintaxe" */
+.tok-kw  { color: var(--purple); }     /* palavra-chave: const */
+.tok-str { color: var(--accent); }     /* textos entre aspas */
+.tok-fn  { color: var(--blue); }       /* métodos */
+.tok-com { color: var(--text-muted); } /* comentários */
+
+/* Grades */
+.grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+}
+
+.grid--projects {
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+}
+
+/* Superfície comum a todos os cards: mude aqui e muda nos dois tipos */
+.card,
+.project {
+  background: var(--surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+}
+
+/* Card simples (Sobre) */
+.card {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.card h3 {
+  font-size: 21px;
+}
+
+.card p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.card .icon {
+  color: var(--accent);
+}
+
+/* Card de projeto */
+.project {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.15s ease;
+}
+
+.project:hover,
+.project:focus-within {
+  border-color: var(--border-dashed);
+}
+
+.project-media {
+  height: 180px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.project-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-body {
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-grow: 1;
+}
+
+.project-body h3 {
+  font-size: 22px;
+  overflow-wrap: anywhere;
+}
+
+.project-body .desc {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.project-body .tech {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: auto; /* empurra os links para o fim do card */
+  padding-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+
+.project-links a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent);
+}
+
+.project-links a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.projects-message {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+
+/* Selos de status */
+.badge {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+
+.badge--construcao { background: var(--badge-green-bg);  color: var(--accent); }
+.badge--ideia      { background: var(--badge-yellow-bg); color: var(--yellow); }
+.badge--pessoal    { background: var(--badge-blue-bg);   color: var(--blue); }
+.badge--concluido  { background: var(--accent);          color: var(--bg); }
+
+/* Ferramentas (chips) */
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.tools .section-head {
+  flex: 1 1 320px;
+  min-width: 0;
+}
+
+.tools .section-title {
+  font-size: clamp(28px, 3.4vw, 40px);
+  line-height: 1.15;
+}
+
+.chip-groups {
+  flex: 2 1 520px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.chip-row-label {
+  width: 110px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.chip {
+  padding: 9px 16px;
+  border-radius: 999px;
+  font-size: 15px;
+}
+
+.chip--uso       { border: 1px solid var(--accent); }
+.chip--estudando { border: 1px dashed var(--border-dashed); }
+
+/* ---------- 8. TIMELINE ---------- */
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  border-top: 1px solid var(--border-card);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.timeline-item {
+  position: relative;
+  padding: 36px 24px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* A bolinha fica "em cima" da linha da timeline */
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--dot);
+}
+
+.timeline-item--atual::before  { background: var(--accent); }
+.timeline-item--proximo::before {
+  background: var(--bg);
+  border: 2px dashed var(--accent);
+}
+
+.timeline-item .when {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.timeline-item--atual .when { color: var(--accent); }
+
+.timeline-item h3 { font-size: 20px; }
+
+.timeline-item p:last-child {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* ---------- 9. CONTATO / RODAPÉ ---------- */
+.contact {
+  padding-top: 112px;
+  padding-bottom: 112px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.contact-title {
+  font-size: clamp(40px, 6vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  max-width: 900px;
+}
+
+.contact-title .highlight { color: var(--accent); }
+
+.site-footer {
+  border-top: 1px solid var(--border);
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 28px;
+  padding-bottom: 28px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ---------- 10. RESPONSIVO ---------- */
+@media (max-width: 720px) {
+  :root { --nav-height: 68px; }
+
+  .nav-toggle { display: inline-flex; }
+
+  /* Menu vira um painel que abre embaixo do cabeçalho */
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    padding: 12px var(--gutter) 20px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-links.is-open { display: flex; }
+
+  .nav-links a:not(.btn-pill) { padding: 0 4px; }
+  .btn-pill { justify-content: center; margin-top: 8px; }
+
+  .hero { padding-top: 56px; padding-bottom: 64px; gap: 40px; }
+  .hero-lead { font-size: 18px; }
+  .section-inner { padding-top: 72px; padding-bottom: 72px; gap: 36px; }
+  .tools { padding-top: 64px; padding-bottom: 64px; }
+  .contact { padding-top: 80px; padding-bottom: 80px; }
+
+  .code-window pre { font-size: 13.5px; padding: 20px; }
+
+  .chip-row-label { width: 100%; }
+
+  /* Timeline vertical no celular */
+  .timeline {
+    border-top: 0;
+    border-left: 1px solid var(--border-card);
+    gap: 32px;
+    margin-left: 7px;
+  }
+
+  .timeline-item { padding: 0 0 0 28px; }
+  .timeline-item::before { top: 4px; left: -8px; }
+}
