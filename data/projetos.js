@@ -4,13 +4,13 @@
    Atenção às vírgulas entre os blocos! */
 window.PROJETOS = [
   {
-    "titulo": "Vai Trabalhar, Curioso!",
-    "descricao": "Brincadeira feita no trabalho: o QR code leva a uma página com o recado do título, que troca de cor a cada 0,7 segundo usando setInterval e sorteio de cores em JavaScript.",
-    "tecnologias": ["HTML", "CSS", "JavaScript"],
-    "status": "pessoal",
+    "titulo": "Painel Inpasa AEI",
+    "descricao": "Controle dos documentos que as empresas AEI precisam entregar no Portal do Parceiro da Inpasa. Uma verificação automática lê o portal todo dia útil, e o painel mostra por empresa e por obra o que vence em até 2 dias úteis (descontando fins de semana e feriados), o que está em análise, o que foi aprovado e o que voltou com pendência.",
+    "tecnologias": ["HTML", "CSS", "JavaScript", "automação com Claude"],
+    "status": "concluído",
     "imagem": "",
-    "repo": "https://github.com/JuanRochaz/site-qrcode",
-    "demo": "https://juanrochaz.github.io/site-qrcode/"
+    "repo": "",
+    "demo": ""
   },
   {
     "titulo": "Alura MIDI",
