@@ -1,0 +1,43 @@
+/* JR Dev — tokens da marca. Tema escuro é o padrão; o claro é o da versão planilha. */
+:root {
+  /* cores — escuro (padrão) */
+  --fundo: #0D1116;
+  --superficie: #161C23;
+  --linha: #263039;
+  --texto: #E6ECF2;
+  --texto-suave: #9AA7B2;
+  --menta: #7EE3A8;
+  --sobre-menta: #0D1116;
+  --menta-fundo: #12261F;
+  --marca-texto: #3A3418;
+  --erro: #F0786B;
+
+  /* tipografia */
+  --font-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-sans: "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", Consolas, ui-monospace, monospace;
+
+  /* espaço (grade de 8) e cantos */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-12: 48px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+}
+
+/* tema claro — versão planilha (versao-2/) */
+.tema-planilha {
+  --fundo: #FFFFFF;
+  --superficie: #F4F6F7;
+  --linha: #D3D9DE;
+  --texto: #172026;
+  --texto-suave: #55626C;
+  --menta: #0E7C5A;
+  --sobre-menta: #FFFFFF;
+  --menta-fundo: #E3F4EC;
+  --marca-texto: #FFE27A;
+  --erro: #B3362A;
+}

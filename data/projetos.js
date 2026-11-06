@@ -5,7 +5,7 @@
 window.PROJETOS = [
   {
     "titulo": "Painel Inpasa AEI",
-    "descricao": "Controle dos documentos que as empresas AEI precisam entregar no Portal do Parceiro da Inpasa. Uma verificação automática lê o portal todo dia útil, e o painel mostra por empresa e por obra o que vence em até 2 dias úteis (descontando fins de semana e feriados), o que está em análise, o que foi aprovado e o que voltou com pendência.",
+    "descricao": "Controle dos documentos que as empresas AEI precisam entregar no Portal do Parceiro da Inpasa. Uma verificação automática lê o portal todo dia útil, e o painel mostra por empresa e por obra o que vence em até 2 dias úteis (descontando fins de semana e feriados), o que está em análise, o que foi aprovado e o que voltou com pendência. (Print com dados ilustrativos.)",
     "tecnologias": ["HTML", "CSS", "JavaScript", "automação com Claude"],
     "status": "concluído",
     "imagem": "img/painel-inpasa.webp",

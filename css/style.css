@@ -7,40 +7,39 @@
    ========================================================= */
 
 /* ---------- 1. TOKENS ----------
-   Variáveis CSS: mude uma cor aqui e ela muda no site inteiro. */
+   As cores, fontes e cantos da marca JR Dev ficam em css/tokens.css
+   (carregado antes deste arquivo no HTML). Aqui só damos "apelidos"
+   a essas variáveis, para o resto do CSS continuar igual.
+   Regra da marca: nada de cor solta (#...) — tudo sai de tokens.css.
+   color-mix() mistura duas cores da marca para criar um tom do meio. */
 :root {
   /* fundos */
-  --bg: #0D1117;
-  --bg-alt: #10151C;
-  --surface: #161B22;
-  --surface-2: #1C232D;
-  /* bordas */
-  --border: #222A35;
-  --border-card: #2A313C;
-  --border-strong: #333D4A;
-  --border-dashed: #4A5564;
-  --dot: #3A4350;
+  --bg: var(--fundo);
+  --bg-alt: color-mix(in srgb, var(--fundo) 60%, var(--superficie)); /* seções alternadas */
+  --surface: var(--superficie);                                       /* cartões */
+  --surface-2: color-mix(in srgb, var(--superficie) 70%, var(--linha)); /* área da imagem */
+  /* bordas (linhas de 1 px, sem sombras) */
+  --border: var(--linha);
+  --border-card: var(--linha);
+  --border-strong: color-mix(in srgb, var(--linha) 70%, var(--texto-suave));
+  --border-dashed: color-mix(in srgb, var(--linha) 40%, var(--texto-suave));
+  --dot: color-mix(in srgb, var(--linha) 60%, var(--texto-suave));
   /* texto */
-  --text: #E6EDF3;
-  --text-soft: #B4BFCB;
-  --text-muted: #9BA7B4;
-  /* destaque (troque por #7CC4FF, #F2C66D ou #C79BFF para testar) */
-  --accent: #7EE2A8;
-  --blue: #7CC4FF;
-  --yellow: #F2C66D;
-  --purple: #C79BFF;
-  /* fundos dos selos de status */
-  --badge-green-bg: #1E2B24;
-  --badge-yellow-bg: #2A2418;
-  --badge-blue-bg: #1A2433;
-  /* tipografia */
-  --font-sans: 'Space Grotesk', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --text: var(--texto);
+  --text-soft: color-mix(in srgb, var(--texto) 50%, var(--texto-suave));
+  --text-muted: var(--texto-suave);
+  /* destaque da marca */
+  --accent: var(--menta);
+  /* Cores de apoio FORA da paleta da marca, usadas só no realce de
+     código do hero e no selo "pessoal" (o briefing pede para mantê-lo). */
+  --apoio-azul: #7CC4FF;
+  --apoio-azul-fundo: #1A2433;
+  --apoio-roxo: #C79BFF;
   /* layout */
   --container: 1200px;
   --gutter: 24px;
-  --radius-card: 16px;
-  --radius-btn: 10px;
+  --radius-card: var(--radius-md);
+  --radius-btn: var(--radius-md);
   --nav-height: 76px;
 
   color-scheme: dark; /* barras de rolagem e campos nativos no modo escuro */
@@ -76,6 +75,13 @@ h1, h2, h3, p {
 
 h1, h2 {
   text-wrap: balance; /* quebra títulos de forma equilibrada */
+}
+
+/* Títulos usam a fonte de destaque da marca (Space Grotesk 600);
+   o texto corrido usa Inter (definida no body por --font-sans) */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
 }
 
 p {
@@ -147,7 +153,7 @@ img {
   top: -100px;
   z-index: 100;
   background: var(--accent);
-  color: var(--bg);
+  color: var(--sobre-menta);
   font-weight: 600;
   padding: 12px 18px;
   border-radius: var(--radius-btn);
@@ -155,7 +161,7 @@ img {
 
 .skip-link:focus {
   top: 16px;
-  color: var(--bg);
+  color: var(--sobre-menta);
 }
 
 /* ---------- 4. NAV ---------- */
@@ -179,16 +185,16 @@ img {
 }
 
 .logo {
-  font-family: var(--font-mono);
-  font-size: 16px;
-  font-weight: 500;
   min-height: 44px;
   display: inline-flex;
   align-items: center;
 }
 
-.logo .dot { color: var(--accent); }
-.logo .parens { color: var(--text-muted); }
+/* O logo é sempre o SVG da marca (nunca texto digitado) */
+.logo img {
+  height: 30px;
+  width: auto;
+}
 
 .nav-links {
   display: flex;
@@ -222,7 +228,7 @@ img {
 .theme-switch:hover { color: var(--accent); }
 
 /* Em telas médias, menos espaço entre os links para tudo caber */
-@media (min-width: 721px) and (max-width: 1000px) {
+@media (min-width: 941px) and (max-width: 1100px) {
   .nav-links { gap: 18px; }
 }
 
@@ -238,7 +244,7 @@ img {
 
 .btn-pill:hover {
   background: var(--accent);
-  color: var(--bg);
+  color: var(--sobre-menta);
 }
 
 /* Botão hambúrguer: escondido no desktop */
@@ -282,7 +288,6 @@ img {
 .hero-title {
   font-size: clamp(44px, 6vw, 80px);
   line-height: 1.02;
-  font-weight: 700;
   letter-spacing: -0.03em;
 }
 
@@ -378,14 +383,14 @@ img {
 
 .btn-primary {
   background: var(--accent);
-  color: var(--bg);
+  color: var(--sobre-menta);
   font-weight: 600;
 }
 
 .btn-primary:hover {
-  color: var(--bg);
-  /* --accent misturado com 20% de branco: fica mais claro em qualquer cor */
-  background: color-mix(in srgb, var(--accent) 80%, white);
+  color: var(--sobre-menta);
+  /* menta misturado com 20% da cor do texto: fica um pouco mais claro */
+  background: color-mix(in srgb, var(--accent) 80%, var(--texto));
 }
 
 .btn-secondary {
@@ -444,9 +449,9 @@ img {
 }
 
 /* Cores do "realce de sintaxe" */
-.tok-kw  { color: var(--purple); }     /* palavra-chave: const */
+.tok-kw  { color: var(--apoio-roxo); } /* palavra-chave: const */
 .tok-str { color: var(--accent); }     /* textos entre aspas */
-.tok-fn  { color: var(--blue); }       /* métodos */
+.tok-fn  { color: var(--apoio-azul); } /* métodos */
 .tok-com { color: var(--text-muted); } /* comentários */
 
 /* Grades */
@@ -584,10 +589,10 @@ img {
   border-radius: 999px;
 }
 
-.badge--construcao { background: var(--badge-green-bg);  color: var(--accent); }
-.badge--ideia      { background: var(--badge-yellow-bg); color: var(--yellow); }
-.badge--pessoal    { background: var(--badge-blue-bg);   color: var(--blue); }
-.badge--concluido  { background: var(--accent);          color: var(--bg); }
+.badge--concluido  { background: var(--menta-fundo); color: var(--menta); }
+.badge--construcao { background: transparent; color: var(--menta); box-shadow: inset 0 0 0 1px var(--menta); }
+.badge--ideia      { background: var(--marca-texto); color: var(--texto); }
+.badge--pessoal    { background: var(--apoio-azul-fundo); color: var(--apoio-azul); }
 
 /* Ferramentas (chips) */
 .tools {
@@ -642,6 +647,54 @@ img {
 
 .chip--uso       { border: 1px solid var(--accent); }
 .chip--estudando { border: 1px dashed var(--border-dashed); }
+
+/* Serviços: os cartões reaproveitam .card; aqui só a faixa "Como funciona" */
+.steps {
+  border-top: 1px solid var(--border);
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.steps-title {
+  font-size: 22px;
+}
+
+.steps-list {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Número do passo em mono: 01, 02, 03 */
+.step-num {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--accent);
+}
+
+.step h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.step p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
 
 /* ---------- 8. TIMELINE ---------- */
 .timeline {
@@ -722,10 +775,23 @@ img {
   border-top: 1px solid var(--border);
 }
 
+/* Símbolo da marca (20 px) antes do texto do rodapé */
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-brand img {
+  width: 20px;
+  height: 20px;
+}
+
 .footer-inner {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
   gap: 12px;
   padding-top: 28px;
   padding-bottom: 28px;
@@ -735,9 +801,9 @@ img {
 }
 
 /* ---------- 10. RESPONSIVO ---------- */
-@media (max-width: 720px) {
-  :root { --nav-height: 68px; }
-
+/* Menu hambúrguer até 940px: com o link "Serviços", os 7 itens
+   não cabem numa linha só em telas de tablet */
+@media (max-width: 940px) {
   .nav-toggle { display: inline-flex; }
 
   /* Menu vira um painel que abre embaixo do cabeçalho */
@@ -766,6 +832,10 @@ img {
     margin-top: 4px;
   }
   .btn-pill { justify-content: center; margin-top: 8px; }
+}
+
+@media (max-width: 720px) {
+  :root { --nav-height: 68px; }
 
   .hero { padding-top: 56px; padding-bottom: 64px; gap: 40px; }
   .hero-lead { font-size: 18px; }

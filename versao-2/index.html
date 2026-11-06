@@ -1,18 +1,41 @@
 <!doctype html>
-<html lang="pt-BR">
+<!-- tema-planilha: troca as variáveis da marca (tokens.css) para o tema claro -->
+<html lang="pt-BR" class="tema-planilha">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Juan Rocha — Da planilha ao código</title>
-  <meta name="description" content="Portfólio de Juan Rocha: gerente de RH e administrativo, estudante de Análise e Desenvolvimento de Sistemas, transformando rotinas de escritório em software.">
+  <title>Juan Rocha · JR Dev — Automação e sistemas</title>
+  <meta name="description" content="Automações, sistemas web, sites e planilhas inteligentes para escritórios e pequenas empresas. Da planilha ao código.">
   <meta name="theme-color" content="#FFFFFF">
 
-  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+  <!-- Prévia quando o link é compartilhado (WhatsApp, LinkedIn) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="JR Dev">
+  <meta property="og:title" content="Juan Rocha · JR Dev — Automação e sistemas">
+  <meta property="og:description" content="Automações, sistemas web, sites e planilhas inteligentes para escritórios e pequenas empresas. Da planilha ao código.">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:url" content="https://juanrochaz.github.io/versao-2/">
+  <meta property="og:image" content="https://juanrochaz.github.io/assets/brand/og-image-1200x630.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="JR Dev — Da planilha ao código.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Juan Rocha · JR Dev — Automação e sistemas">
+  <meta name="twitter:description" content="Automações, sistemas web, sites e planilhas inteligentes para escritórios e pequenas empresas. Da planilha ao código.">
+  <meta name="twitter:image" content="https://juanrochaz.github.io/assets/brand/og-image-1200x630.png">
 
+  <!-- Ícones da aba do navegador e da tela inicial do celular -->
+  <link rel="icon" href="../assets/brand/favicon.ico" sizes="any">
+  <link rel="icon" href="../assets/brand/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png">
+
+  <!-- Fontes da marca: Space Grotesk (títulos), Inter (texto), JetBrains Mono (rótulos e fórmulas) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 
+  <!-- Mesmas variáveis da marca da versão escura; a classe tema-planilha no <html> deixa tudo claro -->
+  <link rel="stylesheet" href="../css/tokens.css">
   <link rel="stylesheet" href="css/style.css">
   <!-- Mesmos dados e mesmo script da versão 1: editar um projeto atualiza as duas -->
   <script src="../data/projetos.js" defer></script>
@@ -24,7 +47,7 @@
 
   <header class="app-bar">
     <div class="wrap app-bar-inner">
-      <a class="brand" href="#topo">Juan Rocha</a>
+      <a class="brand" href="#topo"><img src="../assets/brand/jrdev-logo-claro.svg" alt="JR Dev" width="126" height="28"></a>
       <div class="app-bar-actions">
         <!-- Volta para a versão 1 (tema escuro, a padrão do site) -->
         <a class="app-bar-switch" href="../" data-trocar-versao title="Ver o site na versão escura (padrão)">Versão escura</a>
@@ -62,7 +85,7 @@
           </div>
           <p class="hero-lead">Sou Juan Rocha, gerente de RH e administrativo. Passo o dia entre rotinas administrativas, folha de ponto e contas a pagar e a receber — e estou pronto para transformar essas rotinas em software. Estudante de Análise e Desenvolvimento de Sistemas na Estácio.</p>
           <div class="actions">
-            <a class="btn btn-primary" href="#projetos">Ver projetos</a>
+            <a class="btn btn-primary" href="#servicos">Ver serviços</a>
             <a class="btn btn-ghost" href="#sobre">Minha história</a>
           </div>
         </div>
@@ -91,6 +114,69 @@
             <p>Faculdade de ADS somada a projetos próprios. Este site é o diário de bordo dessa evolução.</p>
           </li>
         </ul>
+      </div>
+    </section>
+
+    <!-- ============ SERVIÇOS: tabela, no mesmo estilo da folha de ponto ============ -->
+    <section id="servicos" class="block" aria-labelledby="servicos-title">
+      <div class="wrap">
+        <div class="block-head">
+          <h2 id="servicos-title">O que a JR Dev faz por você.</h2>
+        </div>
+
+        <div class="timesheet timesheet--servicos">
+          <div class="timesheet-head" aria-hidden="true">
+            <span>Serviço</span><span>O que entrega</span><span>Exemplo</span>
+          </div>
+          <ul>
+            <li>
+              <h3>Automação de rotinas</h3>
+              <p>Robôs e scripts que fazem o trabalho repetitivo: separar e enviar documentos, preencher sistemas, gerar relatórios.</p>
+              <p><span class="sr-only">Exemplo: </span>Separar os holerites por colaborador e enviar cada um pelo WhatsApp.</p>
+            </li>
+            <li>
+              <h3>Planilhas e dashboards</h3>
+              <p>Controles inteligentes em Excel e Google Planilhas, com fórmulas, validações e painéis de indicadores.</p>
+              <p><span class="sr-only">Exemplo: </span>Controle de vencimentos com alerta do que vence nos próximos dias.</p>
+            </li>
+            <li>
+              <h3>Sites e landing pages</h3>
+              <p>Sites institucionais, páginas de venda e portfólios, do design até o ar.</p>
+              <p><span class="sr-only">Exemplo: </span>Este site, nas versões escura e planilha.</p>
+            </li>
+            <li>
+              <h3>Sistemas sob medida</h3>
+              <p>Pequenos sistemas web que funcionam no celular e no computador, do jeito que a sua rotina precisa.</p>
+              <p><span class="sr-only">Exemplo: </span>Painel de prazos de documentos por empresa e por obra.</p>
+            </li>
+            <li>
+              <h3>IA no escritório</h3>
+              <p>Implantação e treinamento de assistentes de IA na rotina da equipe.</p>
+              <p><span class="sr-only">Exemplo: </span>Assistente que organiza e confere documentos do RH.</p>
+            </li>
+          </ul>
+        </div>
+
+        <h3 class="steps-title">Como funciona</h3>
+        <div class="timesheet timesheet--passos">
+          <ol>
+            <li>
+              <p class="period" aria-hidden="true">01</p>
+              <h4>Diagnóstico</h4>
+              <p>Uma conversa para mapear as rotinas e estimar as horas que dá para economizar.</p>
+            </li>
+            <li>
+              <p class="period" aria-hidden="true">02</p>
+              <h4>Projeto fechado</h4>
+              <p>Escopo, prazo e preço definidos por escrito antes de começar.</p>
+            </li>
+            <li>
+              <p class="period" aria-hidden="true">03</p>
+              <h4>Manutenção</h4>
+              <p>Ajustes e suporte mensal, se você quiser.</p>
+            </li>
+          </ol>
+        </div>
       </div>
     </section>
 
@@ -173,6 +259,11 @@
               <h3>ADS na Estácio</h3>
               <p>Graduação em Análise e Desenvolvimento de Sistemas, com projetos práticos paralelos.</p>
             </li>
+            <li class="is-current">
+              <p class="period">2026</p>
+              <h3>JR Dev</h3>
+              <p>Abertura da minha empresa de automação e sistemas para escritórios e pequenas empresas.</p>
+            </li>
             <li class="is-next">
               <p class="period">Em busca de novos desafios</p>
               <h3>Próximos passos</h3>
@@ -188,7 +279,8 @@
       <div class="wrap">
         <h2 id="contato-title">Tem uma rotina chata para automatizar? Vamos conversar.</h2>
         <div class="actions">
-          <a class="btn btn-primary" href="mailto:juanrochat@hotmail.com">Enviar e-mail</a>
+          <!-- O endereço vem de EMAIL_CONTATO, no ../js/main.js -->
+          <a class="btn btn-primary" href="mailto:juanrochat@hotmail.com" data-email>Enviar e-mail</a>
           <a class="btn btn-ghost" href="https://github.com/JuanRochaz" target="_blank" rel="noopener">GitHub<span class="sr-only"> (abre em nova aba)</span></a>
           <a class="btn btn-ghost" href="https://wa.me/5516993301305" target="_blank" rel="noopener">WhatsApp<span class="sr-only"> (abre em nova aba)</span></a>
         </div>
@@ -199,7 +291,11 @@
 
   <footer class="footer">
     <div class="wrap">
-      <p>© <span id="ano">2026</span> Juan Rocha, Sertãozinho/SP. Feito à mão, um commit de cada vez.</p>
+      <p class="footer-brand">
+        <img src="../assets/brand/jrdev-simbolo-claro.svg" alt="" width="20" height="20">
+        <span>© <span id="ano">2026</span> JR Dev · JR Tecnologia e Desenvolvimento LTDA · Sertãozinho/SP</span>
+      </p>
+      <p class="footer-sign">feito à mão, um commit de cada vez</p>
     </div>
   </footer>
 
@@ -208,6 +304,7 @@
     <ul class="nav-links" id="menu">
       <li><a href="#topo">Início</a></li>
       <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#servicos">Serviços</a></li>
       <li><a href="#projetos">Projetos</a></li>
       <li><a href="#ferramentas">Ferramentas</a></li>
       <li><a href="#jornada">Jornada</a></li>

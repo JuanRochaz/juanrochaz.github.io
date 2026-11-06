@@ -3,29 +3,40 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Juan Rocha — Da planilha ao código</title>
-  <meta name="description" content="Portfólio de Juan Rocha: gerente de RH e administrativo, estudante de Análise e Desenvolvimento de Sistemas, transformando rotinas de escritório em software.">
-  <meta name="theme-color" content="#0D1117">
+  <title>Juan Rocha · JR Dev — Automação e sistemas</title>
+  <meta name="description" content="Automações, sistemas web, sites e planilhas inteligentes para escritórios e pequenas empresas. Da planilha ao código.">
+  <meta name="theme-color" content="#0D1116">
 
-  <!-- Prévia quando o link é compartilhado (WhatsApp, LinkedIn) -->
+  <!-- Prévia quando o link é compartilhado (WhatsApp, LinkedIn).
+       A imagem precisa de endereço completo (https://...) e ser .png ou .jpg. -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Juan Rocha — Da planilha ao código">
-  <meta property="og:description" content="Gerente de RH pronto para transformar rotinas de escritório em software.">
+  <meta property="og:site_name" content="JR Dev">
+  <meta property="og:title" content="Juan Rocha · JR Dev — Automação e sistemas">
+  <meta property="og:description" content="Automações, sistemas web, sites e planilhas inteligentes para escritórios e pequenas empresas. Da planilha ao código.">
   <meta property="og:locale" content="pt_BR">
-  <!-- Preencher ao publicar. A imagem precisa de endereço completo (https://...),
-       ser .png ou .jpg (não .svg) e de preferência ter 1200×630 px. -->
   <meta property="og:url" content="https://juanrochaz.github.io/">
-  <meta property="og:image" content="https://juanrochaz.github.io/img/previa.png">
-  <meta property="og:image:alt" content="Juan Rocha — Da planilha ao código">
+  <meta property="og:image" content="https://juanrochaz.github.io/assets/brand/og-image-1200x630.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="JR Dev — Da planilha ao código.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Juan Rocha · JR Dev — Automação e sistemas">
+  <meta name="twitter:description" content="Automações, sistemas web, sites e planilhas inteligentes para escritórios e pequenas empresas. Da planilha ao código.">
+  <meta name="twitter:image" content="https://juanrochaz.github.io/assets/brand/og-image-1200x630.png">
   <link rel="canonical" href="https://juanrochaz.github.io/">
 
-  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <!-- Ícones da aba do navegador e da tela inicial do celular -->
+  <link rel="icon" href="assets/brand/favicon.ico" sizes="any">
+  <link rel="icon" href="assets/brand/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
 
-  <!-- Fontes do Google -->
+  <!-- Fontes da marca: Space Grotesk (títulos), Inter (texto), JetBrains Mono (rótulos e código) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 
+  <!-- Primeiro as variáveis da marca, depois os estilos que as usam -->
+  <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/style.css">
   <!-- defer: os scripts rodam depois que o HTML terminou de carregar,
        na ordem em que aparecem (primeiro os dados, depois o main.js) -->
@@ -39,7 +50,9 @@
   <!-- ================= NAV ================= -->
   <header class="site-header">
     <nav class="container nav" aria-label="Principal">
-      <a class="logo" href="#topo" translate="no" aria-label="Juan Rocha — início">juan<span class="dot">.</span>rocha<span class="parens">()</span></a>
+      <a class="logo" href="#topo">
+        <img src="assets/brand/jrdev-logo-escuro.svg" alt="JR Dev" width="135" height="30">
+      </a>
 
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -47,6 +60,7 @@
 
       <ul class="nav-links" id="menu">
         <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#servicos">Serviços</a></li>
         <li><a href="#projetos">Projetos</a></li>
         <li><a href="#ferramentas">Ferramentas</a></li>
         <li><a href="#jornada">Jornada</a></li>
@@ -67,11 +81,11 @@
     <!-- ================= HERO ================= -->
     <section id="topo" class="container hero" aria-labelledby="hero-title">
       <div class="hero-text">
-        <p class="label">// RH · Administrativo · Desenvolvimento</p>
+        <p class="label">// RH · Administrativo · JR Dev</p>
         <h1 id="hero-title" class="hero-title">Da planilha<br>ao código.</h1>
         <p class="hero-lead">Sou Juan Rocha, gerente de RH e administrativo. Passo o dia entre rotinas administrativas, folha de ponto e contas a pagar e a receber — e estou pronto para transformar essas rotinas em software. Estudante de Análise e Desenvolvimento de Sistemas.</p>
         <div class="btn-row">
-          <a class="btn btn-primary" href="#projetos">Ver projetos</a>
+          <a class="btn btn-primary" href="#servicos">Ver serviços</a>
           <a class="btn btn-secondary" href="#sobre">Minha história</a>
         </div>
       </div>
@@ -87,6 +101,7 @@
 <pre translate="no"><code><span class="tok-kw">const</span> juan = {
   cargo: <span class="tok-str">"Gerente de RH"</span>,
   empresa: <span class="tok-str">"AEI Automação"</span>,
+  empresa_propria: <span class="tok-str">"JR Dev"</span>,
   estudando: <span class="tok-str">"ADS · Estácio"</span>,
   domina: [
     <span class="tok-str">"Excel"</span>, <span class="tok-str">"rotinas de DP"</span>, <span class="tok-str">"financeiro"</span>,
@@ -133,11 +148,72 @@ juan.<span class="tok-fn">aprender</span>(<span class="tok-str">"um pouco todo d
       </div>
     </section>
 
-    <!-- ================= 02 PROJETOS ================= -->
-    <section id="projetos" class="section" aria-labelledby="projetos-title">
+    <!-- ================= 02 SERVIÇOS ================= -->
+    <section id="servicos" class="section" aria-labelledby="servicos-title">
       <div class="container section-inner">
         <div class="section-head">
-          <p class="label">02 / projetos</p>
+          <p class="label">02 / serviços</p>
+          <h2 id="servicos-title" class="section-title">O que a JR Dev faz por você.</h2>
+        </div>
+
+        <!-- Ícones Lucide (traço), desenhados direto no HTML -->
+        <div class="grid">
+          <article class="card">
+            <svg class="icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg>
+            <h3>Automação de rotinas</h3>
+            <p>Robôs e scripts que fazem o trabalho repetitivo: separar e enviar documentos, preencher sistemas, gerar relatórios.</p>
+          </article>
+          <article class="card">
+            <svg class="icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/></svg>
+            <h3>Planilhas e dashboards</h3>
+            <p>Controles inteligentes em Excel e Google Planilhas, com fórmulas, validações e painéis de indicadores.</p>
+          </article>
+          <article class="card">
+            <svg class="icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+            <h3>Sites e landing pages</h3>
+            <p>Sites institucionais, páginas de venda e portfólios, do design até o ar.</p>
+          </article>
+          <article class="card">
+            <svg class="icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 4v4"/><path d="M2 8h20"/><path d="M6 4v4"/></svg>
+            <h3>Sistemas sob medida</h3>
+            <p>Pequenos sistemas web que funcionam no celular e no computador, do jeito que a sua rotina precisa.</p>
+          </article>
+          <article class="card">
+            <svg class="icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
+            <h3>IA no escritório</h3>
+            <p>Implantação e treinamento de assistentes de IA na rotina da equipe.</p>
+          </article>
+        </div>
+
+        <!-- Faixa "Como funciona": 3 passos numerados -->
+        <div class="steps">
+          <h3 class="steps-title">Como funciona</h3>
+          <ol class="steps-list">
+            <li class="step">
+              <span class="step-num" aria-hidden="true">01</span>
+              <h4>Diagnóstico</h4>
+              <p>Uma conversa para mapear as rotinas e estimar as horas que dá para economizar.</p>
+            </li>
+            <li class="step">
+              <span class="step-num" aria-hidden="true">02</span>
+              <h4>Projeto fechado</h4>
+              <p>Escopo, prazo e preço definidos por escrito antes de começar.</p>
+            </li>
+            <li class="step">
+              <span class="step-num" aria-hidden="true">03</span>
+              <h4>Manutenção</h4>
+              <p>Ajustes e suporte mensal, se você quiser.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 03 PROJETOS ================= -->
+    <section id="projetos" class="section section--alt" aria-labelledby="projetos-title">
+      <div class="container section-inner">
+        <div class="section-head">
+          <p class="label">03 / projetos</p>
           <h2 id="projetos-title" class="section-title">O que já construí enquanto aprendo.</h2>
         </div>
 
@@ -147,11 +223,11 @@ juan.<span class="tok-fn">aprender</span>(<span class="tok-str">"um pouco todo d
       </div>
     </section>
 
-    <!-- ================= 03 FERRAMENTAS ================= -->
-    <section id="ferramentas" class="section section--alt" aria-labelledby="ferramentas-title">
+    <!-- ================= 04 FERRAMENTAS ================= -->
+    <section id="ferramentas" class="section" aria-labelledby="ferramentas-title">
       <div class="container tools">
         <div class="section-head">
-          <p class="label">03 / ferramentas</p>
+          <p class="label">04 / ferramentas</p>
           <h2 id="ferramentas-title" class="section-title">O que já uso e o que estou estudando.</h2>
         </div>
 
@@ -176,11 +252,11 @@ juan.<span class="tok-fn">aprender</span>(<span class="tok-str">"um pouco todo d
       </div>
     </section>
 
-    <!-- ================= 04 JORNADA ================= -->
-    <section id="jornada" class="section" aria-labelledby="jornada-title">
+    <!-- ================= 05 JORNADA ================= -->
+    <section id="jornada" class="section section--alt" aria-labelledby="jornada-title">
       <div class="container section-inner">
         <div class="section-head">
-          <p class="label">04 / jornada</p>
+          <p class="label">05 / jornada</p>
           <h2 id="jornada-title" class="section-title">Um commit de cada vez.</h2>
         </div>
 
@@ -201,6 +277,11 @@ juan.<span class="tok-fn">aprender</span>(<span class="tok-str">"um pouco todo d
             <h3>ADS · Estácio</h3>
             <p>Graduação em Análise e Desenvolvimento de Sistemas, com projetos práticos paralelos.</p>
           </li>
+          <li class="timeline-item timeline-item--atual">
+            <p class="when">2026</p>
+            <h3>JR Dev</h3>
+            <p>Abertura da minha empresa de automação e sistemas para escritórios e pequenas empresas.</p>
+          </li>
           <li class="timeline-item timeline-item--proximo">
             <p class="when">em busca de novos desafios</p>
             <h3>Próximos passos</h3>
@@ -210,15 +291,16 @@ juan.<span class="tok-fn">aprender</span>(<span class="tok-str">"um pouco todo d
       </div>
     </section>
 
-    <!-- ================= 05 CONTATO ================= -->
-    <section id="contato" class="section section--alt" aria-labelledby="contato-title">
+    <!-- ================= 06 CONTATO ================= -->
+    <section id="contato" class="section" aria-labelledby="contato-title">
       <div class="container contact">
-        <p class="label">05 / contato</p>
+        <p class="label">06 / contato</p>
         <h2 id="contato-title" class="contact-title">Tem uma rotina chata para automatizar? <span class="highlight">Vamos conversar.</span></h2>
         <div class="btn-row">
-          <a class="btn btn-primary" href="mailto:juanrochat@hotmail.com">
+          <!-- O e-mail é trocado em um lugar só: EMAIL_CONTATO, no js/main.js -->
+          <a class="btn btn-primary" href="mailto:juanrochat@hotmail.com" data-email>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-            juanrochat@hotmail.com
+            <span data-email-texto>juanrochat@hotmail.com</span>
           </a>
           <a class="btn btn-secondary" href="https://github.com/JuanRochaz" target="_blank" rel="noopener">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
@@ -238,7 +320,10 @@ juan.<span class="tok-fn">aprender</span>(<span class="tok-str">"um pouco todo d
   <!-- ================= RODAPÉ ================= -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <span>© <span id="ano">2026</span> Juan Rocha · Sertãozinho/SP</span>
+      <span class="footer-brand">
+        <img src="assets/brand/jrdev-simbolo.svg" alt="" width="20" height="20">
+        <span>© <span id="ano">2026</span> JR Dev · JR Tecnologia e Desenvolvimento LTDA · Sertãozinho/SP</span>
+      </span>
       <span>feito à mão, um commit de cada vez</span>
     </div>
   </footer>

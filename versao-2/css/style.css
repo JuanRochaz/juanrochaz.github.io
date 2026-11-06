@@ -10,26 +10,30 @@
    11. Animação de entrada   12. Celular
    ========================================================= */
 
-/* ---------- 1. TOKENS ---------- */
+/* ---------- 1. TOKENS ----------
+   As cores e fontes vêm de ../../css/tokens.css (marca JR Dev).
+   A classe "tema-planilha" no <html> ativa a paleta clara da marca.
+   Aqui só damos apelidos com cara de planilha para essas variáveis. */
 :root {
   /* cores */
-  --paper: #FFFFFF;        /* fundo, como a folha da planilha */
-  --grid: #DDE3E8;         /* linhas de grade */
-  --head: #F1F4F6;         /* cabeçalhos de linha/coluna */
-  --ink: #172026;          /* texto principal */
-  --ink-soft: #55626C;     /* texto secundário (contraste 6:1 no branco) */
-  --select: #0E7C5A;       /* seleção de célula, links, botão principal */
-  --select-dark: #0A5E44;  /* hover do botão principal */
-  --marker: #FFE36E;       /* marca-texto: o que está acontecendo agora */
+  --paper: var(--fundo);        /* fundo, como a folha da planilha */
+  --grid: var(--linha);         /* linhas de grade */
+  --head: var(--superficie);    /* cabeçalhos de linha/coluna */
+  --ink: var(--texto);          /* texto principal */
+  --ink-soft: var(--texto-suave); /* texto secundário */
+  --select: var(--menta);       /* seleção de célula, links, botão principal */
+  --select-dark: color-mix(in srgb, var(--menta) 80%, var(--texto)); /* hover do botão */
+  --marker: var(--marca-texto); /* marca-texto: o que está acontecendo agora */
 
   /* fundos das situações dos projetos (como formatação condicional) */
-  --st-done-bg: #D6F2E4;   --st-done-ink: #0B5E44;
-  --st-build-bg: #FFF3B0;  --st-build-ink: #5C4A00;
-  --st-idea-bg: #E8EEF4;   --st-idea-ink: #33424F;
+  --st-done-bg: var(--menta-fundo);   --st-done-ink: var(--menta);
+  --st-build-bg: var(--marca-texto);  --st-build-ink: var(--texto);
+  --st-idea-bg: var(--superficie);    --st-idea-ink: var(--texto-suave);
+  /* "pessoal" mantém a cor de antes: única cor de apoio fora da marca */
   --st-own-bg: #EDE7F6;    --st-own-ink: #4A3A73;
 
-  /* tipografia: uma família só, com números tabulares */
-  --font: 'Schibsted Grotesk', system-ui, sans-serif;
+  /* tipografia da marca */
+  --font: var(--font-sans);
   --fs-small: 0.875rem;  /* 14px */
   --fs-body: 1.0625rem;  /* 17px */
   --fs-lead: 1.3125rem;  /* 21px */
@@ -66,7 +70,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, p { margin: 0; }
+h1, h2, h3, h4, p { margin: 0; }
+
+/* Títulos: Space Grotesk 600 (fonte de destaque da marca) */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+}
 h1, h2 { text-wrap: balance; }
 p { text-wrap: pretty; }
 ul, ol { margin: 0; padding: 0; list-style: none; }
@@ -115,13 +125,14 @@ a {
   align-items: center;
   min-height: 48px;
   padding: 12px 22px;
-  font-weight: 700;
+  font-weight: 600;
   font-size: var(--fs-body);
   text-decoration: none;
   border: 2px solid var(--select);
+  border-radius: var(--radius-md);
   transition: background-color 0.15s ease, color 0.15s ease;
 }
-.btn-primary { background: var(--select); color: var(--paper); }
+.btn-primary { background: var(--select); color: var(--sobre-menta); }
 .btn-primary:hover { background: var(--select-dark); border-color: var(--select-dark); }
 .btn-ghost { background: var(--paper); color: var(--select); }
 .btn-ghost:hover { background: var(--st-done-bg); }
@@ -136,15 +147,13 @@ a {
   min-height: 60px;
 }
 
+/* Logo da marca: sempre o SVG, nunca texto digitado */
 .brand {
-  color: var(--ink);
-  font-weight: 800;
-  font-size: 1.125rem;
-  text-decoration: none;
   min-height: 44px;
   display: inline-flex;
   align-items: center;
 }
+.brand img { height: 28px; width: auto; }
 
 .app-bar-link {
   font-weight: 700;
@@ -171,6 +180,7 @@ a {
   font-size: var(--fs-small);
   font-weight: 500;
   text-decoration: none;
+  border-radius: var(--radius-md);
   transition: border-color 0.15s ease;
 }
 .app-bar-switch:hover { border-color: var(--select); }
@@ -185,6 +195,7 @@ a {
   display: flex;
   align-items: stretch;
   min-height: 44px;
+  font-family: var(--font-mono); /* fórmula e caixa de nome em mono, como código */
   font-size: var(--fs-small);
 }
 
@@ -287,7 +298,6 @@ a {
 
 .cell-selected h1 {
   font-size: var(--fs-h1);
-  font-weight: 800;
   line-height: 0.98;
   letter-spacing: -0.035em;
 }
@@ -318,7 +328,6 @@ a {
 
 .block-head h2 {
   font-size: var(--fs-h2);
-  font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
@@ -348,7 +357,6 @@ a {
 
 .cells-3 h3, .checklist h3 {
   font-size: var(--fs-h3);
-  font-weight: 700;
   line-height: 1.3;
 }
 
@@ -400,7 +408,6 @@ a {
 .project-body h3 {
   grid-area: titulo;
   font-size: var(--fs-h3);
-  font-weight: 700;
   line-height: 1.3;
   overflow-wrap: anywhere;
   border-bottom: 0;
@@ -524,7 +531,21 @@ a {
 }
 .timesheet-head span { padding: 8px 16px; }
 
-.timesheet h3 { font-size: var(--fs-h3); font-weight: 700; line-height: 1.3; }
+.timesheet h3, .timesheet h4 { font-size: var(--fs-h3); line-height: 1.3; }
+
+/* Mono nos períodos e nos números dos passos (01, 02, 03) */
+.timesheet .period { font-family: var(--font-mono); font-size: var(--fs-small); }
+
+/* A mesma "folha" serve para Serviços (Serviço | O que entrega | Exemplo) */
+.timesheet--servicos { --cols: minmax(0, 1fr) minmax(0, 1.6fr) minmax(0, 1.4fr); }
+
+/* ...e para os passos de "Como funciona" (número | etapa | o que acontece) */
+.steps-title {
+  font-size: var(--fs-h3);
+  margin: 48px 0 16px;
+}
+.timesheet--passos { --cols: 5rem minmax(0, 1fr) minmax(0, 2.6fr); }
+.timesheet--passos .period { color: var(--select); }
 .timesheet li > p { color: var(--ink-soft); }
 
 /* Linha atual: marcada com marca-texto
@@ -540,7 +561,6 @@ a {
 
 .block-contact h2 {
   font-size: clamp(2.25rem, 5.5vw, 4.25rem);
-  font-weight: 800;
   line-height: 1.02;
   letter-spacing: -0.03em;
   max-width: 16ch;
@@ -550,9 +570,27 @@ a {
 .footer {
   border-top: 1px solid var(--grid);
   padding: 24px 0;
+  font-family: var(--font-mono);
   font-size: var(--fs-small);
   color: var(--ink-soft);
 }
+
+/* Rodapé: marca à esquerda, assinatura à direita */
+.footer .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Símbolo da marca (20 px) antes do texto */
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.footer-brand img { width: 20px; height: 20px; }
 
 /* ---------- 10. ABAS DA PLANILHA (menu) ---------- */
 .sheet-tabs {
@@ -664,7 +702,8 @@ a {
   .timesheet-head { display: none; }
   .timesheet li { grid-template-columns: 1fr; border-bottom: 1px solid var(--grid); border-right: 1px solid var(--grid); }
   .timesheet li > * { border: 0; padding: 2px 16px; }
-  .timesheet li > :first-child { padding-top: 16px; font-size: var(--fs-small); }
+  .timesheet li > :first-child { padding-top: 16px; }
+  .timesheet .period { font-size: var(--fs-small); }
   .timesheet li > :last-child { padding-bottom: 16px; }
 }
 
