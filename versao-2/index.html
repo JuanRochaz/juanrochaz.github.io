@@ -32,7 +32,12 @@
   <!-- Fontes da marca: Space Grotesk (títulos), Inter (texto), JetBrains Mono (rótulos e fórmulas) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <!-- Fontes sem travar a página: o navegador baixa o CSS das fontes "em paralelo"
+       (preload) e só depois o liga como estilo (onload). Enquanto isso, o texto já
+       aparece com a fonte de reserva (Segoe UI / Consolas) e troca quando a da marca chega.
+       O <noscript> garante as fontes para quem navega com JavaScript desligado. -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
 
   <!-- Mesmas variáveis da marca da versão escura; a classe tema-planilha no <html> deixa tudo claro -->
   <link rel="stylesheet" href="../css/tokens.css">
