@@ -545,6 +545,36 @@ img {
   color: var(--text-muted);
 }
 
+.project-body .desc {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Antes (à mão) x depois (com automação), separados por uma linha */
+.antes-depois {
+  margin: 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 16px;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.antes-depois dt {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding-top: 3px; /* alinha o rótulo com a 1ª linha do texto */
+}
+
+.antes-depois dd { margin: 0; }
+
+.antes-depois-antes { color: var(--text-muted); }
+.antes-depois-depois { color: var(--accent); }
+.antes-depois-depois + dd { color: var(--text); }
+
 .project-body .tech {
   font-family: var(--font-mono);
   font-size: 13px;

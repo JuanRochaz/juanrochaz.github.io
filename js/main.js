@@ -190,9 +190,36 @@ function criarCardProjeto(projeto) {
   titulo.textContent = projeto.titulo;
   corpo.appendChild(titulo);
 
-  const descricao = document.createElement('p');
+  // A descrição é uma caixa (div) com o texto e, se existir,
+  // o bloco "antes / depois" logo embaixo
+  const descricao = document.createElement('div');
   descricao.className = 'desc';
-  descricao.textContent = projeto.descricao;
+  const textoDescricao = document.createElement('p');
+  textoDescricao.textContent = projeto.descricao;
+  descricao.appendChild(textoDescricao);
+
+  // Antes (feito à mão) e depois (com automação): só aparece se
+  // o projeto tiver os dois campos preenchidos em data/projetos.js.
+  // <dl> é uma "lista de definições": cada <dt> é um rótulo e o <dd>
+  // logo abaixo é o texto daquele rótulo.
+  if (projeto.antes && projeto.depois) {
+    const comparacao = document.createElement('dl');
+    comparacao.className = 'antes-depois';
+    [
+      { rotulo: 'antes', texto: projeto.antes },
+      { rotulo: 'depois', texto: projeto.depois },
+    ].forEach(function (item) {
+      const dt = document.createElement('dt');
+      dt.className = 'antes-depois-' + item.rotulo; // antes-depois-antes / antes-depois-depois
+      dt.textContent = item.rotulo;
+      const dd = document.createElement('dd');
+      dd.textContent = item.texto;
+      comparacao.appendChild(dt);
+      comparacao.appendChild(dd);
+    });
+    descricao.appendChild(comparacao);
+  }
+
   corpo.appendChild(descricao);
 
   const tecnologias = document.createElement('p');

@@ -414,6 +414,25 @@ a {
 }
 
 .project-body .desc { grid-area: desc; color: var(--ink-soft); }
+
+/* Antes (à mão) x depois (com automação), dentro da célula "O que é" */
+.antes-depois {
+  margin: 12px 0 0;
+  padding-top: 12px;
+  border-top: 1px dashed var(--grid);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 12px;
+  font-size: var(--fs-small);
+}
+.antes-depois dt {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding-top: 2px;
+}
+.antes-depois dd { margin: 0; }
+.antes-depois-depois { color: var(--select); }
+.antes-depois-depois + dd { color: var(--ink); }
 .project-body .tech { grid-area: tech; font-size: var(--fs-small); }
 
 /* Situação: célula inteira pintada, como formatação condicional */

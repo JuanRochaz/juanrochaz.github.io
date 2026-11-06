@@ -1,14 +1,29 @@
 /* Projetos do portfólio.
    Para adicionar um projeto, copie um bloco { ... } e altere os campos.
    status: "concluído" | "em construção" | "ideia" | "pessoal"
+   "antes" e "depois" são opcionais: como a tarefa era feita à mão
+   e como ficou com a automação. Sem eles, o card não mostra esse bloco.
    Atenção às vírgulas entre os blocos! */
 window.PROJETOS = [
   {
     "titulo": "Painel Inpasa AEI",
-    "descricao": "Controle dos documentos que as empresas AEI precisam entregar no Portal do Parceiro da Inpasa. Uma verificação automática lê o portal todo dia útil, e o painel mostra por empresa e por obra o que vence em até 2 dias úteis (descontando fins de semana e feriados), o que está em análise, o que foi aprovado e o que voltou com pendência. (Print com dados ilustrativos.)",
+    "descricao": "Controle dos documentos que as empresas AEI precisam entregar no Portal do Parceiro da Inpasa, por empresa e por obra: o que vence, o que está em análise, o que foi aprovado e o que voltou com pendência. (Print com dados ilustrativos.)",
+    "antes": "Entrar no portal, abrir empresa por empresa e obra por obra e anotar os prazos numa planilha, contando os dias úteis à mão.",
+    "depois": "Uma verificação automática lê o portal todo dia útil, e o painel já mostra o que vence em até 2 dias úteis, descontando fins de semana e feriados.",
     "tecnologias": ["HTML", "CSS", "JavaScript", "automação com Claude"],
     "status": "concluído",
     "imagem": "img/painel-inpasa.webp",
+    "repo": "",
+    "demo": ""
+  },
+  {
+    "titulo": "Auditoria Contábil",
+    "descricao": "Painel que revisa o Balanço Patrimonial e a DRE de vários anos e aponta o que o contador precisa conferir: testes de fechamento, indicadores e pontos de atenção por relevância, cada um com evidência e cálculo. São indícios para conferência, não parecer de auditoria. (Print com dados fictícios.)",
+    "antes": "Ler os PDFs do Balanço e da DRE ano a ano, digitar os saldos numa planilha e comparar conta a conta para achar o que não fecha.",
+    "depois": "O Claude lê os PDFs e gera um arquivo com testes, indicadores e achados; o painel organiza tudo por relevância e mostra o que conferir em cada ponto.",
+    "tecnologias": ["HTML", "CSS", "JavaScript", "JSON", "análise com Claude"],
+    "status": "concluído",
+    "imagem": "img/auditoria-contabil.webp",
     "repo": "",
     "demo": ""
   },
