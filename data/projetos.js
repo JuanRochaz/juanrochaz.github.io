@@ -14,7 +14,7 @@ window.PROJETOS = [
     "status": "em construção",
     "imagem": "img/muscle-factory.webp",
     "repo": "",
-    "demo": "https://muscle-factory-zeta.vercel.app"
+    "demo": ""
   },
   {
     "titulo": "Painel Inpasa AEI",
