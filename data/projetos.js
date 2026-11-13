@@ -6,6 +6,17 @@
    Atenção às vírgulas entre os blocos! */
 window.PROJETOS = [
   {
+    "titulo": "Muscle Factory",
+    "descricao": "Site de vendas da Muscle Factory, consultoria online de treino personalizado, feito pela JR Dev. O visitante conhece o método e faz um pré-cadastro em etapas, uma pergunta por tela; os treinadores recebem as respostas organizadas e fecham a venda pelo WhatsApp. Projeto de cliente, em fase final de conteúdo.",
+    "antes": "Interessados chamavam direto no WhatsApp, e os treinadores precisavam fazer as mesmas perguntas a cada pessoa para saber se o perfil combinava.",
+    "depois": "O pré-cadastro faz a triagem antes: cada resposta cai numa planilha Google e chega um aviso por e-mail, e o contato pelo WhatsApp já começa com o perfil em mãos.",
+    "tecnologias": ["Next.js", "TypeScript", "Tailwind CSS", "Zod", "Google Apps Script", "Vercel"],
+    "status": "em construção",
+    "imagem": "img/muscle-factory.webp",
+    "repo": "",
+    "demo": "https://muscle-factory-zeta.vercel.app"
+  },
+  {
     "titulo": "Painel Inpasa AEI",
     "descricao": "Controle dos documentos que as empresas AEI precisam entregar no Portal do Parceiro da Inpasa, por empresa e por obra: o que vence, o que está em análise, o que foi aprovado e o que voltou com pendência. (Print com dados ilustrativos.)",
     "antes": "Entrar no portal, abrir empresa por empresa e obra por obra e anotar os prazos numa planilha, contando os dias úteis à mão.",

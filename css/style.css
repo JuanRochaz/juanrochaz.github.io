@@ -604,6 +604,67 @@ img {
   text-underline-offset: 4px;
 }
 
+/* Carrossel de projetos
+   É uma fila de cards que rola para o lado. "scroll-snap" faz a
+   rolagem sempre parar com um card encostado na borda esquerda,
+   em vez de parar no meio de um card. Funciona até sem JavaScript. */
+.carrossel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;              /* rolagem horizontal */
+  scroll-snap-type: x mandatory; /* "encaixa" em cada card */
+  overscroll-behavior-x: contain;
+  padding-bottom: 16px;          /* espaço para a barra de rolagem */
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+.carrossel > .project {
+  /* cada card tem 380px, ou 85% da largura no celular
+     (assim aparece um pedaço do próximo card, convidando a rolar) */
+  flex: 0 0 min(380px, 85%);
+  scroll-snap-align: start;
+}
+
+.carrossel-botoes {
+  display: flex;
+  gap: 12px;
+}
+
+.carrossel-botoes[hidden] {
+  display: none;
+}
+
+.carrossel-botao {
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  color: var(--text);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.carrossel-botao:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* No começo da fila o "←" fica apagado; no fim, o "→" */
+.carrossel-botao:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* Quem pediu menos animação no sistema não vê a rolagem suave */
+@media (prefers-reduced-motion: no-preference) {
+  .carrossel { scroll-behavior: smooth; }
+}
+
 .projects-message {
   color: var(--text-muted);
   font-family: var(--font-mono);

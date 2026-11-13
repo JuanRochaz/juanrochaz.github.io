@@ -5,6 +5,7 @@
    3. Destacar no menu a seção que está na tela
    4. Trocar de versão mantendo a seção atual
    5. Montar os cards de projetos a partir de data/projetos.js
+   6. Botões do carrossel de projetos
    ========================================================= */
 
 
@@ -292,3 +293,47 @@ function mostrarProjetos() {
 }
 
 mostrarProjetos();
+
+
+/* ---------- 6. CARROSSEL DE PROJETOS (só na versão escura) ----------
+   A rolagem para o lado já funciona só com CSS. Aqui ligamos os
+   botões ← e →, que andam um card por vez, e apagamos o botão
+   quando chega ao começo ou ao fim da fila. */
+function prepararCarrossel() {
+  const trilho = document.querySelector('.carrossel');
+  const areaBotoes = document.querySelector('[data-carrossel-botoes]');
+  const botaoAnterior = document.querySelector('[data-carrossel="anterior"]');
+  const botaoProximo = document.querySelector('[data-carrossel="proximo"]');
+  // A versão planilha não tem carrossel: nada a fazer
+  if (!trilho || !areaBotoes || !botaoAnterior || !botaoProximo) return;
+
+  // Quanto andar por clique: a largura de um card + o espaço entre cards
+  function tamanhoDoPasso() {
+    const card = trilho.querySelector('.project');
+    if (!card) return trilho.clientWidth;
+    const espaco = parseFloat(getComputedStyle(trilho).columnGap) || 0;
+    return card.offsetWidth + espaco;
+  }
+
+  // Liga/desliga os botões conforme a posição da rolagem
+  function atualizarBotoes() {
+    const rolagemMaxima = trilho.scrollWidth - trilho.clientWidth;
+    // Se todos os cards cabem na tela, os botões nem aparecem
+    areaBotoes.hidden = rolagemMaxima <= 1;
+    botaoAnterior.disabled = trilho.scrollLeft <= 1;
+    botaoProximo.disabled = trilho.scrollLeft >= rolagemMaxima - 1;
+  }
+
+  botaoAnterior.addEventListener('click', function () {
+    trilho.scrollBy({ left: -tamanhoDoPasso() });
+  });
+  botaoProximo.addEventListener('click', function () {
+    trilho.scrollBy({ left: tamanhoDoPasso() });
+  });
+
+  trilho.addEventListener('scroll', atualizarBotoes, { passive: true });
+  window.addEventListener('resize', atualizarBotoes);
+  atualizarBotoes();
+}
+
+prepararCarrossel();

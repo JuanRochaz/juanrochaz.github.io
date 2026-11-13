@@ -217,14 +217,28 @@ juan.<span class="tok-fn">aprender</span>(<span class="tok-str">"um pouco todo d
     <!-- ================= 03 PROJETOS ================= -->
     <section id="projetos" class="section section--alt" aria-labelledby="projetos-title">
       <div class="container section-inner">
-        <div class="section-head">
-          <p class="label">03 / projetos</p>
-          <h2 id="projetos-title" class="section-title">O que já construí enquanto aprendo.</h2>
+        <div class="section-head-split">
+          <div class="section-head">
+            <p class="label">03 / projetos</p>
+            <h2 id="projetos-title" class="section-title">O que já construí enquanto aprendo.</h2>
+          </div>
+          <!-- Botões do carrossel: começam escondidos (hidden) e o js/main.js
+               mostra quando há mais cards do que cabem na tela -->
+          <div class="carrossel-botoes" data-carrossel-botoes hidden>
+            <button type="button" class="carrossel-botao" data-carrossel="anterior" aria-label="Projeto anterior">
+              <span aria-hidden="true">←</span>
+            </button>
+            <button type="button" class="carrossel-botao" data-carrossel="proximo" aria-label="Próximo projeto">
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
         </div>
 
-        <!-- Os cards são criados pelo js/main.js a partir de data/projetos.js -->
+        <!-- Os cards são criados pelo js/main.js a partir de data/projetos.js.
+             A lista é um carrossel: rola para o lado (com o dedo, a roda do
+             mouse + Shift, as setas do teclado ou os botões acima). -->
         <p class="projects-message" id="projetos-status" role="status">Carregando projetos…</p>
-        <div class="grid grid--projects" id="lista-projetos"></div>
+        <div class="carrossel" id="lista-projetos" role="region" aria-label="Projetos (role para o lado para ver todos)" tabindex="0"></div>
       </div>
     </section>
 
