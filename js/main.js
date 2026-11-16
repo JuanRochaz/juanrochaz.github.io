@@ -166,7 +166,8 @@ function criarCardProjeto(projeto) {
   if (projeto.imagem) {
     const img = document.createElement('img');
     img.src = new URL(projeto.imagem, raizDoSite).href;
-    img.alt = 'Tela do projeto ' + projeto.titulo;
+    // "alt" é opcional nos dados; sem ele, usamos um texto padrão
+    img.alt = projeto.alt || 'Tela do projeto ' + projeto.titulo;
     img.width = 1200; // tamanho real dos prints (1200×600)
     img.height = 600;
     img.loading = 'lazy'; // só baixa a imagem quando chegar perto dela
@@ -228,10 +229,12 @@ function criarCardProjeto(projeto) {
   tecnologias.textContent = projeto.tecnologias.join(' · ');
   corpo.appendChild(tecnologias);
 
-  // Links (só aparecem se existirem nos dados)
+  // Links (só aparecem se existirem nos dados).
+  // "pagina" é a página do projeto aqui no site: abre na mesma aba.
   const links = [];
+  if (projeto.pagina) links.push({ texto: 'Ver detalhes', url: new URL(projeto.pagina, raizDoSite).href, mesmaAba: true });
   if (projeto.repo) links.push({ texto: 'Código', url: projeto.repo });
-  if (projeto.demo) links.push({ texto: 'Ver online', url: projeto.demo });
+  if (projeto.demo) links.push({ texto: 'Ver online', url: new URL(projeto.demo, raizDoSite).href });
 
   if (links.length > 0) {
     const areaLinks = document.createElement('div');
@@ -239,10 +242,14 @@ function criarCardProjeto(projeto) {
     links.forEach(function (item) {
       const a = document.createElement('a');
       a.href = item.url;
-      a.target = '_blank';
-      a.rel = 'noopener';
       a.textContent = item.texto + ' →';
-      a.setAttribute('aria-label', item.texto + ' de ' + projeto.titulo + ' (abre em nova aba)');
+      if (item.mesmaAba) {
+        a.setAttribute('aria-label', item.texto + ' de ' + projeto.titulo);
+      } else {
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.setAttribute('aria-label', item.texto + ' de ' + projeto.titulo + ' (abre em nova aba)');
+      }
       areaLinks.appendChild(a);
     });
     corpo.appendChild(areaLinks);

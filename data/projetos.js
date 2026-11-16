@@ -1,10 +1,38 @@
 /* Projetos do portfólio.
    Para adicionar um projeto, copie um bloco { ... } e altere os campos.
    status: "concluído" | "em construção" | "ideia" | "pessoal"
+   "pagina" é opcional: endereço da página do projeto aqui no site
+   (mostra o botão "Ver detalhes"). "alt" é opcional: descrição da imagem.
    "antes" e "depois" são opcionais: como a tarefa era feita à mão
    e como ficou com a automação. Sem eles, o card não mostra esse bloco.
    Atenção às vírgulas entre os blocos! */
 window.PROJETOS = [
+  {
+    "titulo": "Site Maps",
+    "descricao": "Ferramenta que transforma o link de uma empresa no Google Maps em um site completo, pronto para publicar. Criada para a prospecção da JR Dev. (Empresas das imagens são fictícias.)",
+    "antes": "Montar uma demonstração para cada empresa local sem site: copiar dados do Google, escolher um modelo, escrever os textos e publicar, tudo à mão.",
+    "depois": "Um comando com o link do Maps coleta os dados, escolhe o modelo do nicho, gera o site, publica na Netlify e já deixa pronta a mensagem para o WhatsApp.",
+    "tecnologias": ["Node.js", "JavaScript", "Google Places API", "Netlify", "Claude Code"],
+    "status": "concluído",
+    "imagem": "img/site-maps.webp",
+    "alt": "Cinco modelos de site gerados pelo Site Maps: barbearia, oficina, clínica, restaurante e escritório",
+    "pagina": "projetos/site-maps/",
+    "repo": "https://github.com/JuanRochaz/site-maps",
+    "demo": ""
+  },
+  {
+    "titulo": "Relatório de agendamentos do Instagram",
+    "descricao": "Página gerada por Python que mostra, semana a semana, todas as publicações agendadas no Instagram, com prévia, arquivo e legenda.",
+    "antes": "Abrir post por post na ferramenta de agendamento para conferir dia, arquivo e legenda de 20 publicações.",
+    "depois": "Um script lê a API do Metricool e gera uma página única, que abre no celular e confere o mês inteiro em menos de um minuto.",
+    "tecnologias": ["Python", "API do Metricool", "Pillow", "ffmpeg", "HTML/CSS"],
+    "status": "concluído",
+    "imagem": "img/relatorio-agendamentos.webp",
+    "alt": "Relatório de agendamentos do Instagram no computador e no celular, com indicadores e publicações da semana",
+    "pagina": "projetos/relatorio-agendamentos/",
+    "repo": "",
+    "demo": "projetos/relatorio-agendamentos/demo.html"
+  },
   {
     "titulo": "Muscle Factory",
     "descricao": "Site de vendas da Muscle Factory, consultoria online de treino personalizado, feito pela JR Dev. O visitante conhece o método e faz um pré-cadastro em etapas, uma pergunta por tela; os treinadores recebem as respostas organizadas e fecham a venda pelo WhatsApp. Projeto de cliente, em fase final de conteúdo.",
