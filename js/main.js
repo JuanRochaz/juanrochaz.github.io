@@ -10,10 +10,10 @@
 
 
 /* ---------- 0. E-MAIL DE CONTATO ----------
-   Quando o e-mail do domínio da JR Dev existir, troque SÓ esta linha:
+   Para trocar o e-mail do site, mude esta linha e o e-mail escrito nos dois index.html;
    os botões de e-mail das duas versões do site se atualizam sozinhos.
    (O HTML já vem com o e-mail atual, para funcionar mesmo sem JavaScript.) */
-const EMAIL_CONTATO = 'juanrochat@hotmail.com';
+const EMAIL_CONTATO = 'contato@jrdevtecnologia.com.br';
 
 document.querySelectorAll('[data-email]').forEach(function (link) {
   link.href = 'mailto:' + EMAIL_CONTATO;

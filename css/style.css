@@ -379,6 +379,23 @@ img {
   border-radius: var(--radius-btn);
   font-size: 16px;
   border: 1px solid transparent;
+  max-width: 100%;            /* nunca mais largo que a tela */
+}
+
+/* O e-mail é uma palavra comprida: em telas bem estreitas,
+   pode quebrar depois do "@" em vez de empurrar a página para o lado */
+[data-email-texto] {
+  overflow-wrap: anywhere;
+}
+
+/* No celular, o botão do e-mail fica um pouco mais compacto
+   para o endereço caber numa linha só */
+@media (max-width: 420px) {
+  .btn[data-email] {
+    padding-left: 18px;
+    padding-right: 18px;
+    font-size: 14.5px;
+  }
 }
 
 .btn-primary {
