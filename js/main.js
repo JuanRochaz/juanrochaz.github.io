@@ -5,7 +5,7 @@
    3. Destacar no menu a seção que está na tela
    4. Trocar de versão mantendo a seção atual
    5. Montar os cards de projetos a partir de data/projetos.js
-   6. Botões do carrossel de projetos
+   6. Carrossel de projetos (Swiper: arrastar, teclado e botões)
    ========================================================= */
 
 
@@ -296,44 +296,55 @@ mostrarProjetos();
 
 
 /* ---------- 6. CARROSSEL DE PROJETOS (só na versão escura) ----------
-   A rolagem para o lado já funciona só com CSS. Aqui ligamos os
-   botões ← e →, que andam um card por vez, e apagamos o botão
-   quando chega ao começo ou ao fim da fila. */
+   Quem faz o carrossel é o Swiper, a mesma biblioteca do AluraBooks.
+   Ele cuida de arrastar com o mouse ou o dedo, das setas do teclado
+   e dos botões ← e →. Aqui só dizemos como ele deve se comportar. */
 function prepararCarrossel() {
-  const trilho = document.querySelector('.carrossel');
+  const carrossel = document.querySelector('.carrossel');
   const areaBotoes = document.querySelector('[data-carrossel-botoes]');
-  const botaoAnterior = document.querySelector('[data-carrossel="anterior"]');
-  const botaoProximo = document.querySelector('[data-carrossel="proximo"]');
   // A versão planilha não tem carrossel: nada a fazer
-  if (!trilho || !areaBotoes || !botaoAnterior || !botaoProximo) return;
+  if (!carrossel || !areaBotoes) return;
 
-  // Quanto andar por clique: a largura de um card + o espaço entre cards
-  function tamanhoDoPasso() {
-    const card = trilho.querySelector('.project');
-    if (!card) return trilho.clientWidth;
-    const espaco = parseFloat(getComputedStyle(trilho).columnGap) || 0;
-    return card.offsetWidth + espaco;
+  // Se o Swiper não carregou (internet instável, por exemplo), o CSS
+  // deixa a fila rolar para o lado sozinha e os botões ficam escondidos.
+  if (typeof window.Swiper !== 'function') {
+    console.warn('Swiper não carregou: o carrossel usa a rolagem simples.');
+    return;
   }
 
-  // Liga/desliga os botões conforme a posição da rolagem
-  function atualizarBotoes() {
-    const rolagemMaxima = trilho.scrollWidth - trilho.clientWidth;
-    // Se todos os cards cabem na tela, os botões nem aparecem
-    areaBotoes.hidden = rolagemMaxima <= 1;
-    botaoAnterior.disabled = trilho.scrollLeft <= 1;
-    botaoProximo.disabled = trilho.scrollLeft >= rolagemMaxima - 1;
+  // O Swiper pede a classe "swiper-slide" em cada item da fila
+  carrossel.querySelectorAll('.project').forEach(function (card) {
+    card.classList.add('swiper-slide');
+  });
+
+  // Os botões só aparecem quando há mais cards do que cabem na tela.
+  // "lock" = tudo cabe, "unlock" = sobrou card fora da tela.
+  function mostrarBotoes(swiper) {
+    areaBotoes.hidden = swiper.isLocked;
   }
 
-  botaoAnterior.addEventListener('click', function () {
-    trilho.scrollBy({ left: -tamanhoDoPasso() });
+  new window.Swiper(carrossel, {
+    slidesPerView: 'auto',  // a largura de cada card vem do CSS
+    spaceBetween: 20,       // espaço entre os cards, em pixels
+    grabCursor: true,       // cursor de "mãozinha" para arrastar
+    // Quem pediu menos animação no sistema vê a troca sem deslizar
+    speed: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 400,
+    keyboard: { enabled: true, onlyInViewport: true },
+    navigation: {
+      prevEl: '[data-carrossel="anterior"]',
+      nextEl: '[data-carrossel="proximo"]',
+    },
+    a11y: {
+      prevSlideMessage: 'Projeto anterior',
+      nextSlideMessage: 'Próximo projeto',
+      slideLabelMessage: 'Projeto {{index}} de {{slidesLength}}',
+    },
+    on: {
+      init: mostrarBotoes,
+      lock: mostrarBotoes,
+      unlock: mostrarBotoes,
+    },
   });
-  botaoProximo.addEventListener('click', function () {
-    trilho.scrollBy({ left: tamanhoDoPasso() });
-  });
-
-  trilho.addEventListener('scroll', atualizarBotoes, { passive: true });
-  window.addEventListener('resize', atualizarBotoes);
-  atualizarBotoes();
 }
 
 prepararCarrossel();

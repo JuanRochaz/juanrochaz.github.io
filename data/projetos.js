@@ -66,15 +66,6 @@ window.PROJETOS = [
     "demo": "https://alura-plus-juanrochaz.vercel.app"
   },
   {
-    "titulo": "Super Mario Bros — O Filme",
-    "descricao": "Página de divulgação do filme com vídeo de fundo em loop e layout responsivo.",
-    "tecnologias": ["HTML", "CSS", "JavaScript", "vídeo"],
-    "status": "pessoal",
-    "imagem": "img/projeto-mario.webp",
-    "repo": "https://github.com/JuanRochaz/Projeto-Mario",
-    "demo": "https://juanrochaz.github.io/Projeto-Mario/"
-  },
-  {
     "titulo": "Curiosidade de Tecnologia",
     "descricao": "Meu primeiro site: a história do mascote do Android, feito acompanhando o Curso em Vídeo.",
     "tecnologias": ["HTML", "CSS"],

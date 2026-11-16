@@ -41,10 +41,13 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
 
   <!-- Primeiro as variáveis da marca, depois os estilos que as usam -->
+  <!-- Swiper: biblioteca do carrossel de projetos (a mesma usada no AluraBooks) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.css">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/style.css">
   <!-- defer: os scripts rodam depois que o HTML terminou de carregar,
        na ordem em que aparecem (primeiro os dados, depois o main.js) -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.js" defer></script>
   <script src="data/projetos.js" defer></script>
   <script src="js/main.js" defer></script>
 </head>
@@ -235,10 +238,13 @@ juan.<span class="tok-fn">aprender</span>(<span class="tok-str">"um pouco todo d
         </div>
 
         <!-- Os cards são criados pelo js/main.js a partir de data/projetos.js.
-             A lista é um carrossel: rola para o lado (com o dedo, a roda do
-             mouse + Shift, as setas do teclado ou os botões acima). -->
+             A lista é um carrossel feito com o Swiper: dá para arrastar com o
+             mouse ou o dedo, usar as setas do teclado ou os botões acima.
+             Estrutura que o Swiper pede: .swiper > .swiper-wrapper > .swiper-slide -->
         <p class="projects-message" id="projetos-status" role="status">Carregando projetos…</p>
-        <div class="carrossel" id="lista-projetos" role="region" aria-label="Projetos (role para o lado para ver todos)" tabindex="0"></div>
+        <div class="carrossel swiper" role="region" aria-label="Projetos (arraste para o lado para ver todos)">
+          <div class="swiper-wrapper" id="lista-projetos"></div>
+        </div>
       </div>
     </section>
 

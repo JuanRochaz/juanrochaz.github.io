@@ -605,23 +605,31 @@ img {
 }
 
 /* Carrossel de projetos
-   É uma fila de cards que rola para o lado. "scroll-snap" faz a
-   rolagem sempre parar com um card encostado na borda esquerda,
-   em vez de parar no meio de um card. Funciona até sem JavaScript. */
+   Quem move a fila é o Swiper (js/main.js). Cada card tem 380px, ou 85%
+   da largura no celular: assim aparece um pedaço do próximo card,
+   convidando a arrastar. */
 .carrossel {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;              /* rolagem horizontal */
-  scroll-snap-type: x mandatory; /* "encaixa" em cada card */
-  overscroll-behavior-x: contain;
-  padding-bottom: 16px;          /* espaço para a barra de rolagem */
-  scrollbar-width: thin;
-  scrollbar-color: var(--border-strong) transparent;
+  /* o CSS do Swiper centraliza com margem automática; sem esta linha,
+     no celular a fila ficaria mais larga que a tela */
+  width: 100%;
 }
 
-.carrossel > .project {
-  /* cada card tem 380px, ou 85% da largura no celular
-     (assim aparece um pedaço do próximo card, convidando a rolar) */
+.carrossel .project {
+  width: min(380px, 85%);
+  height: auto;      /* todos os cards com a altura do mais alto */
+}
+
+/* Plano B: se o Swiper não carregar, a fila rola para o lado
+   com o dedo ou a barra de rolagem, como antes. */
+.carrossel:not(.swiper-initialized) {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 16px;
+}
+.carrossel:not(.swiper-initialized) .swiper-wrapper {
+  gap: 20px;
+}
+.carrossel:not(.swiper-initialized) .project {
   flex: 0 0 min(380px, 85%);
   scroll-snap-align: start;
 }
@@ -655,15 +663,12 @@ img {
 }
 
 /* No começo da fila o "←" fica apagado; no fim, o "→" */
-.carrossel-botao:disabled {
+.carrossel-botao:disabled,
+.carrossel-botao.swiper-button-disabled {
   opacity: 0.35;
   cursor: default;
 }
 
-/* Quem pediu menos animação no sistema não vê a rolagem suave */
-@media (prefers-reduced-motion: no-preference) {
-  .carrossel { scroll-behavior: smooth; }
-}
 
 .projects-message {
   color: var(--text-muted);
