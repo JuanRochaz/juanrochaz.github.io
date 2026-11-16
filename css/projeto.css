@@ -85,13 +85,13 @@
   max-width: 860px;
 }
 
+/* O número fica num canto (position: absolute) e o texto corre
+   normal ao lado. (Com "grid", o negrito e o resto do texto viravam
+   pedaços separados e o texto ficava espremido numa coluna fina.) */
 .passos li {
   counter-increment: passo;
-  display: grid;
-  grid-template-columns: 44px 1fr;
-  gap: 16px;
-  align-items: start;
-  padding: 18px 20px;
+  position: relative;
+  padding: 18px 20px 18px 64px;
   background: var(--surface);
   border: 1px solid var(--border-card);
   border-radius: var(--radius-card);
@@ -102,9 +102,11 @@
 /* O número de cada passo: 01, 02, 03... */
 .passos li::before {
   content: counter(passo, decimal-leading-zero);
+  position: absolute;
+  left: 20px;
+  top: 18px;
   font-family: var(--font-mono);
   color: var(--accent);
-  padding-top: 1px;
 }
 
 .passos strong {
@@ -216,6 +218,7 @@
 
 @media (max-width: 640px) {
   .projeto-resumo { font-size: 18px; }
-  .passos li { grid-template-columns: 1fr; gap: 6px; }
+  .passos li { padding-left: 56px; }
+  .passos li::before { left: 16px; }
   .projeto-codigo pre { font-size: 13px; padding: 18px; }
 }

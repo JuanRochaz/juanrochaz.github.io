@@ -22,7 +22,7 @@ window.PROJETOS = [
   },
   {
     "titulo": "Relatório de agendamentos do Instagram",
-    "descricao": "Página gerada por Python que mostra, semana a semana, todas as publicações agendadas no Instagram, com prévia, arquivo e legenda.",
+    "descricao": "Página gerada por Python que mostra, semana a semana, todas as publicações agendadas no Instagram, com prévia, arquivo e legenda. (Demo com dados fictícios.)",
     "antes": "Abrir post por post na ferramenta de agendamento para conferir dia, arquivo e legenda de 20 publicações.",
     "depois": "Um script lê a API do Metricool e gera uma página única, que abre no celular e confere o mês inteiro em menos de um minuto.",
     "tecnologias": ["Python", "API do Metricool", "Pillow", "ffmpeg", "HTML/CSS"],
