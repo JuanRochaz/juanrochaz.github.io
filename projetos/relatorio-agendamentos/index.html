@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Relatório de agendamentos do Instagram · JR Dev</title>
+  <meta name="description" content="Página gerada por Python que mostra, semana a semana, todas as publicações agendadas no Instagram, com prévia, arquivo e legenda.">
+  <meta name="theme-color" content="#0D1116">
+
+  <!-- Prévia quando o link é compartilhado (WhatsApp, LinkedIn) -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="JR Dev">
+  <meta property="og:title" content="Relatório de agendamentos do Instagram · JR Dev">
+  <meta property="og:description" content="Página gerada por Python que mostra, semana a semana, todas as publicações agendadas no Instagram, com prévia, arquivo e legenda.">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:url" content="https://jrdevtecnologia.com.br/projetos/relatorio-agendamentos/">
+  <meta property="og:image" content="https://jrdevtecnologia.com.br/assets/brand/og-image-1200x630.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://jrdevtecnologia.com.br/projetos/relatorio-agendamentos/">
+
+  <link rel="icon" href="../../assets/brand/favicon.ico" sizes="any">
+  <link rel="icon" href="../../assets/brand/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../../assets/brand/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+
+  <!-- Mesmos estilos do site + os estilos só das páginas de projeto -->
+  <link rel="stylesheet" href="../../css/tokens.css">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/projeto.css">
+  <!-- main.js: menu do celular e ano do rodapé -->
+  <script src="../../js/main.js" defer></script>
+</head>
+<body>
+
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- ================= NAV (igual à página inicial) ================= -->
+  <header class="site-header">
+    <nav class="container nav" aria-label="Principal">
+      <a class="logo" href="../../">
+        <img src="../../assets/brand/jrdev-logo-escuro.svg" alt="JR Dev — página inicial" width="135" height="30">
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+
+      <ul class="nav-links" id="menu">
+        <li><a href="../../#sobre">Sobre</a></li>
+        <li><a href="../../#servicos">Serviços</a></li>
+        <li><a href="../../#projetos" aria-current="true">Projetos</a></li>
+        <li><a href="../../#ferramentas">Ferramentas</a></li>
+        <li><a href="../../#jornada">Jornada</a></li>
+        <li><a class="btn-pill" href="../../#contato">Fale comigo</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="conteudo">
+    <!-- ================= TOPO DO PROJETO ================= -->
+    <section class="section projeto-topo" aria-labelledby="projeto-titulo">
+      <div class="container section-inner">
+        <a class="voltar" href="../../#projetos">← Voltar aos projetos</a>
+        <div class="section-head">
+          <p class="label">automação · JR Dev · 2026</p>
+          <h1 id="projeto-titulo" class="section-title">Relatório de agendamentos do Instagram</h1>
+          <p class="projeto-resumo">Página gerada por Python que mostra, semana a semana, todas as publicações agendadas no Instagram, com prévia, arquivo e legenda.</p>
+        </div>
+        <ul class="projeto-tags" aria-label="Tecnologias"><li>Python</li><li>API do Metricool</li><li>Pillow</li><li>ffmpeg</li><li>HTML/CSS responsivo</li><li>Playwright</li></ul>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="demo.html" target="_blank" rel="noopener">
+            Ver demo<span class="sr-only"> (abre em nova aba)</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DESAFIO / SOLUÇÃO / RESULTADO ================= -->
+    <section class="section section--alt" aria-labelledby="desafio-titulo">
+      <div class="container section-inner">
+        <div class="section-head">
+          <p class="label">o desafio</p>
+          <h2 id="desafio-titulo" class="section-title">20 publicações, 4 semanas, tudo conferido.</h2>
+          <p class="projeto-texto">Com 20 publicações agendadas para 4 semanas (posts, carrosséis e Reels), ficava difícil conferir rapidamente o que ia ao ar, em que dia, com qual arquivo e com qual legenda, sem abrir post por post na ferramenta de agendamento.</p>
+        </div>
+        <div class="projeto-colunas">
+          <div>
+            <h3>A solução</h3>
+            <p class="projeto-texto">Um script em Python que:</p>
+            <ul class="destaques">
+              <li>consulta as publicações agendadas pela API do Metricool;</li>
+              <li>gera miniaturas das artes (Pillow) e um quadro de cada Reel (ffmpeg), embutidas na página em base64;</li>
+              <li>agrupa tudo por semana e monta uma página HTML única, leve e responsiva, com indicadores (total, Reels, posts e limite mensal do plano), status de cada publicação e legenda que abre com um toque;</li>
+              <li>gera um arquivo só, sem dependências, que dá para abrir no celular ou mandar por WhatsApp e e-mail.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>O resultado</h3>
+            <ul class="destaques">
+              <li>Conferência das 20 publicações do mês em menos de um minuto, no celular.</li>
+              <li>Controle visual do limite do plano gratuito (20 publicações/mês).</li>
+              <li>Um relatório que pode ser gerado de novo a qualquer momento, sempre com a situação atual dos agendamentos.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= GALERIA ================= -->
+    <section class="section" aria-labelledby="galeria-titulo">
+      <div class="container section-inner">
+        <div class="section-head">
+          <p class="label">telas</p>
+          <h2 id="galeria-titulo" class="section-title">No computador e no celular.</h2>
+          <p class="projeto-texto">As telas e a demo usam dados fictícios: o “Café Exemplo” não existe.</p>
+        </div>
+        <div class="galeria galeria--desktop">
+          <figure>
+            <img src="../../img/relatorio-agendamentos/desktop-topo.webp" alt="Topo do relatório no computador, com os indicadores: 20 publicações agendadas, 8 Reels, 12 posts e carrosséis e o limite do plano" width="1280" height="800" loading="lazy">
+            <figcaption>Indicadores e primeira semana</figcaption>
+          </figure>
+          <figure>
+            <img src="../../img/relatorio-agendamentos/desktop-legenda-aberta.webp" alt="Card de uma publicação com a legenda aberta no relatório" width="1280" height="800" loading="lazy">
+            <figcaption>Legenda que abre com um toque</figcaption>
+          </figure>
+        </div>
+        <p class="projeto-texto"><a href="../../img/relatorio-agendamentos/desktop-pagina-inteira.webp" target="_blank" rel="noopener">Ver a página inteira em uma imagem →<span class="sr-only"> (abre em nova aba)</span></a></p>
+        <h3 class="galeria-subtitulo">No celular</h3>
+        <div class="galeria galeria--celular">
+          <figure>
+            <img src="../../img/relatorio-agendamentos/celular-topo.webp" alt="Relatório de agendamentos no celular, com os indicadores" width="390" height="844" loading="lazy">
+            <figcaption>Indicadores</figcaption>
+          </figure>
+          <figure>
+            <img src="../../img/relatorio-agendamentos/celular-cards.webp" alt="Cards das publicações agendadas no celular" width="390" height="844" loading="lazy">
+            <figcaption>Publicações da semana</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CÓDIGO ================= -->
+    <section class="section section--alt" aria-labelledby="codigo-titulo">
+      <div class="container section-inner">
+        <div class="section-head">
+          <p class="label">por dentro</p>
+          <h2 id="codigo-titulo" class="section-title">Dois trechos do script.</h2>
+        </div>
+        <figure class="code-window projeto-codigo">
+          <div class="code-window-bar" aria-hidden="true">
+            <span class="light"></span>
+            <span class="light"></span>
+            <span class="light"></span>
+            <span class="filename" translate="no">gera_relatorio.py</span>
+          </div>
+<pre translate="no" tabindex="0"><code><span class="tok-kw">import</span> base64, io, subprocess, html, datetime
+<span class="tok-kw">from</span> PIL import Image
+
+<span class="tok-kw">def</span> <span class="tok-fn">img64</span>(path,w=220):
+    im=Image.open(path).convert(&#x27;RGB&#x27;); im.thumbnail((w,w*2)); b=io.BytesIO(); im.save(b,&#x27;JPEG&#x27;,quality=80); return base64.b64encode(b.getvalue()).decode()
+<span class="tok-kw">def</span> <span class="tok-fn">vid64</span>(path,t=None,w=220):
+    d=float(subprocess.check_output([&#x27;ffprobe&#x27;,&#x27;-v&#x27;,&#x27;error&#x27;,&#x27;-show_entries&#x27;,&#x27;format=duration&#x27;,&#x27;-of&#x27;,&#x27;csv=p=0&#x27;,path]).decode())
+    subprocess.run([&#x27;ffmpeg&#x27;,&#x27;-nostdin&#x27;,&#x27;-loglevel&#x27;,&#x27;error&#x27;,&#x27;-y&#x27;,&#x27;-ss&#x27;,str(t if t else d*0.45),&#x27;-i&#x27;,path,&#x27;-frames:v&#x27;,&#x27;1&#x27;,&#x27;/tmp/p.png&#x27;])
+    return <span class="tok-fn">img64</span>(&#x27;/tmp/p.png&#x27;,w), d</code></pre>
+          <figcaption>Miniaturas: a arte é reduzida com o Pillow; do Reel, o ffmpeg tira um quadro do meio do vídeo. Tudo vira texto base64, embutido na página.</figcaption>
+        </figure>
+        <figure class="code-window projeto-codigo">
+          <div class="code-window-bar" aria-hidden="true">
+            <span class="light"></span>
+            <span class="light"></span>
+            <span class="light"></span>
+            <span class="filename" translate="no">gera_relatorio.py</span>
+          </div>
+<pre translate="no" tabindex="0"><code>cards=[];weeks={}
+<span class="tok-kw">for</span> d,h,fmt,title,files,cap in P:
+    dt=datetime.date.fromisoformat(d); wk=dt.isocalendar()[1]
+    thumbs=&#x27;&#x27;
+    meta=&#x27;&#x27;
+    <span class="tok-kw">if</span> fmt==&#x27;Reel&#x27;:
+        b,dur=<span class="tok-fn">vid64</span>(files[0]); thumbs=f&#x27;&lt;div class=&quot;th reel&quot;&gt;&lt;img src=&quot;data:image/jpeg;base64,{b}&quot;&gt;&lt;span class=&quot;play&quot;&gt;▶ {dur:.0f}s&lt;/span&gt;&lt;/div&gt;&#x27;
+        meta=&#x27;Narrado · 1080×1920&#x27;
+    else:
+        <span class="tok-kw">for</span> f in files: thumbs+=f&#x27;&lt;div class=&quot;th&quot;&gt;&lt;img src=&quot;data:image/jpeg;base64,{<span class="tok-fn">img64</span>(f,160 if len(files)&gt;1 else 220)}&quot;&gt;&lt;/div&gt;&#x27;
+        meta=f&#x27;{len(files)} imagens · 1080×1350&#x27; if len(files)&gt;1 else &#x27;1080×1350&#x27;
+    fl=&#x27;, &#x27;.join(fname.get(f,f.split(&#x27;/&#x27;)[-1]) for f in files)
+    cls={&#x27;Reel&#x27;:&#x27;reel&#x27;,&#x27;Carrossel&#x27;:&#x27;car&#x27;,&#x27;Post&#x27;:&#x27;post&#x27;}[fmt]
+    card=f&#x27;&#x27;&#x27;&lt;article class=&quot;card&quot;&gt;&lt;div class=&quot;when&quot;&gt;&lt;div class=&quot;day&quot;&gt;{DIAS[dt.weekday()]}&lt;/div&gt;&lt;div class=&quot;date&quot;&gt;{dt.strftime(&#x27;%d/%m&#x27;)}&lt;/div&gt;&lt;div class=&quot;hour&quot;&gt;{h}&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;thumbs n{len(files)}&quot;&gt;{thumbs}&lt;/div&gt;
+&lt;div class=&quot;info&quot;&gt;&lt;div class=&quot;top&quot;&gt;&lt;span class=&quot;tag {cls}&quot;&gt;{fmt}&lt;/span&gt;&lt;span class=&quot;ok&quot;&gt;● Agendado&lt;/span&gt;&lt;/div&gt;&lt;h3&gt;{html.escape(title)}&lt;/h3&gt;
+&lt;div class=&quot;file&quot;&gt;&lt;b&gt;Arquivo:&lt;/b&gt; {html.escape(fl)}&lt;br&gt;&lt;span&gt;{meta}&lt;/span&gt;&lt;/div&gt;
+&lt;details&gt;&lt;summary&gt;Legenda&lt;/summary&gt;&lt;p&gt;{html.escape(cap).replace(chr(10),&#x27;&lt;br&gt;&#x27;)}&lt;/p&gt;&lt;/details&gt;&lt;/div&gt;&lt;/article&gt;&#x27;&#x27;&#x27;
+    weeks.setdefault(wk,[]).append((dt,card))
+sections=&#x27;&#x27;
+<span class="tok-kw">for</span> i,(wk,items) in enumerate(sorted(weeks.items())):
+    a=items[0][0]; b=items[-1][0]
+    sections+=f&#x27;&lt;section&gt;&lt;h2&gt;Semana {i+1} &lt;small&gt;{a.strftime(&quot;%d/%m&quot;)} – {b.strftime(&quot;%d/%m&quot;)}&lt;/small&gt;&lt;/h2&gt;{&quot;&quot;.join(c for _,c in items)}&lt;/section&gt;&#x27;</code></pre>
+          <figcaption>Os cards: cada publicação é agrupada pela semana do ano (isocalendar) e as legendas passam por html.escape antes de entrar no HTML.</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= RODAPÉ ================= -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span class="footer-brand">
+        <img src="../../assets/brand/jrdev-simbolo.svg" alt="" width="20" height="20">
+        <span>© <span id="ano">2026</span> JR Dev · JR Tecnologia e Desenvolvimento LTDA · Sertãozinho/SP</span>
+      </span>
+      <span>feito à mão, um commit de cada vez</span>
+    </div>
+  </footer>
+
+</body>
+</html>
