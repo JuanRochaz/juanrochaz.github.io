@@ -1,0 +1,19 @@
+# Cabeçalhos de segurança do Cloudflare Pages (jrdevtecnologia.com.br).
+# O Cloudflare lê este arquivo e manda estes cabeçalhos junto com cada página.
+# (GitHub Pages e Vercel ignoram este arquivo.)
+#
+# Strict-Transport-Security: o navegador passa a usar sempre HTTPS neste site.
+# X-Frame-Options / frame-ancestors: nenhum outro site pode colocar o seu dentro de um quadro.
+# X-Content-Type-Options: o navegador não "adivinha" o tipo dos arquivos.
+# Referrer-Policy: outros sites só veem o domínio de onde o visitante veio.
+# Permissions-Policy: o site não pede câmera, microfone nem localização.
+# Content-Security-Policy: lista de onde a página pode carregar scripts, estilos,
+#   fontes e imagens. O hash 'sha256-...' libera só o onload das fontes do Google.
+
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-hashes' 'sha256-1jAmyYXcRq6zFldLe/GCgIDJBiOONdXjTLgEFMDnDSM='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
