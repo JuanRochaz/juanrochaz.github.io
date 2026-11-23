@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Escritório ao vivo · JR Dev</title>
+  <meta name="description" content="Simulação 3D de um dia de rotina de RH e financeiro, mostrando em tempo real como a automação tira o trabalho repetitivo da equipe.">
+  <meta name="theme-color" content="#0D1116">
+
+  <!-- Prévia quando o link é compartilhado (WhatsApp, LinkedIn) -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="JR Dev">
+  <meta property="og:title" content="Escritório ao vivo · JR Dev">
+  <meta property="og:description" content="Simulação 3D de um dia de rotina de RH e financeiro, mostrando em tempo real como a automação tira o trabalho repetitivo da equipe.">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:url" content="https://jrdevtecnologia.com.br/projetos/escritorio-ao-vivo/">
+  <meta property="og:image" content="https://jrdevtecnologia.com.br/assets/brand/og-image-1200x630.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://jrdevtecnologia.com.br/projetos/escritorio-ao-vivo/">
+
+  <link rel="icon" href="../../assets/brand/favicon.ico" sizes="any">
+  <link rel="icon" href="../../assets/brand/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../../assets/brand/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+
+  <!-- Mesmos estilos do site + os estilos só das páginas de projeto -->
+  <link rel="stylesheet" href="../../css/tokens.css">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/projeto.css">
+  <!-- main.js: menu do celular e ano do rodapé -->
+  <script src="../../js/main.js" defer></script>
+</head>
+<body>
+
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- ================= NAV (igual à página inicial) ================= -->
+  <header class="site-header">
+    <nav class="container nav" aria-label="Principal">
+      <a class="logo" href="../../">
+        <img src="../../assets/brand/jrdev-logo-escuro.svg" alt="JR Dev — página inicial" width="135" height="30">
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+
+      <ul class="nav-links" id="menu">
+        <li><a href="../../#sobre">Sobre</a></li>
+        <li><a href="../../#servicos">Serviços</a></li>
+        <li><a href="../../#projetos" aria-current="true">Projetos</a></li>
+        <li><a href="../../#ferramentas">Ferramentas</a></li>
+        <li><a href="../../#jornada">Jornada</a></li>
+        <li><a class="btn-pill" href="../../#contato">Fale comigo</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="conteudo">
+    <!-- ================= TOPO DO PROJETO ================= -->
+    <section class="section projeto-topo" aria-labelledby="projeto-titulo">
+      <div class="container section-inner">
+        <a class="voltar" href="../../#projetos">← Voltar aos projetos</a>
+        <div class="section-head">
+          <p class="label">simulação · JR Dev · 2026</p>
+          <h1 id="projeto-titulo" class="section-title">Escritório ao vivo</h1>
+          <p class="projeto-resumo">Simulação 3D de um dia de rotina de RH e financeiro. Mostra, em tempo real, como a automação tira o trabalho repetitivo da equipe.</p>
+        </div>
+        <ul class="projeto-tags" aria-label="Tecnologias"><li>Three.js</li><li>JavaScript</li><li>Simulação</li><li>Automação de processos</li></ul>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="simulacao.html" target="_blank" rel="noopener">
+            Ver a simulação<span class="sr-only"> (abre em nova aba)</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DESAFIO / SOLUÇÃO / RESULTADO ================= -->
+    <section class="section section--alt" aria-labelledby="desafio-titulo">
+      <div class="container section-inner">
+        <div class="section-head">
+          <p class="label">o desafio</p>
+          <h2 id="desafio-titulo" class="section-title">Mostrar o tempo que a automação devolve.</h2>
+          <p class="projeto-texto">Falar que a automação “poupa tempo” é fácil; difícil é mostrar. A ideia foi transformar um dia comum de um setor administrativo em algo que dá para ver: as demandas chegando, as filas andando e o que muda quando as tarefas repetitivas saem da mão da equipe.</p>
+        </div>
+        <div class="projeto-colunas">
+          <div>
+            <h3>A solução</h3>
+            <p class="projeto-texto">Uma página única, que roda direto no navegador:</p>
+            <ul class="destaques">
+              <li>um escritório em 3D (Three.js) com seis pessoas, cada uma de um setor: Depto. Pessoal, Financeiro, Fiscal, Compras, RH e Gestão;</li>
+              <li>31 demandas que chegam ao longo do dia, das 8h às 18h, entram na fila de cada pessoa, são processadas e vão para o arquivo de concluídas;</li>
+              <li>pausas para o café e almoço, em que a equipe vai até a copa e o trabalho espera;</li>
+              <li>um robô de automação que cuida das tarefas repetitivas, como enviar holerites e montar o relatório do dia;</li>
+              <li>um painel com o relógio, as filas, a linha do tempo e o tempo poupado, com controles de pausa e velocidade.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>O resultado</h3>
+            <ul class="destaques">
+              <li>6 tarefas que levariam 7h25 à mão ficam prontas em 21 minutos com o robô.</li>
+              <li>7h04 devolvidas à equipe no dia, para o que precisa de gente.</li>
+              <li>Uma demonstração visual para explicar automação a quem não é da área.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= GALERIA ================= -->
+    <section class="section" aria-labelledby="galeria-titulo">
+      <div class="container section-inner">
+        <div class="section-head">
+          <p class="label">telas</p>
+          <h2 id="galeria-titulo" class="section-title">Um dia, do começo ao fim.</h2>
+          <p class="projeto-texto">Simulação ilustrativa: nomes, tarefas e tempos são fictícios.</p>
+        </div>
+        <div class="galeria galeria--desktop">
+          <figure>
+            <img src="../../img/escritorio-ao-vivo/01-visao-geral.webp" alt="Visão geral do escritório às 9h05, com a equipe trabalhando e o painel do dia mostrando 2h54 poupadas pela automação" width="1440" height="860" loading="lazy">
+            <figcaption>Visão geral da manhã</figcaption>
+          </figure>
+          <figure>
+            <img src="../../img/escritorio-ao-vivo/02-robo-automacao.webp" alt="Robô de automação processando o envio de 42 holerites, com o anel verde aceso" width="1440" height="860" loading="lazy">
+            <figcaption>Robô enviando os holerites</figcaption>
+          </figure>
+          <figure>
+            <img src="../../img/escritorio-ao-vivo/03-pausa-cafe.webp" alt="Equipe reunida na copa durante a pausa para o café, com as mesas vazias" width="1440" height="860" loading="lazy">
+            <figcaption>Pausa para o café</figcaption>
+          </figure>
+          <figure>
+            <img src="../../img/escritorio-ao-vivo/04-tarde.webp" alt="Escritório às 14h20, com a equipe trabalhando e o arquivo de concluídas cheio de demandas coloridas" width="1440" height="860" loading="lazy">
+            <figcaption>Tarde com a equipe trabalhando</figcaption>
+          </figure>
+          <figure>
+            <img src="../../img/escritorio-ao-vivo/05-resumo-do-dia.webp" alt="Resumo do fim do dia: 31 demandas concluídas, 6 pelo robô; 7h25 à mão contra 21 minutos com automação" width="1440" height="860" loading="lazy">
+            <figcaption>Resumo do fim do dia</figcaption>
+          </figure>
+        </div>
+
+        <h3 class="galeria-subtitulo">Em vídeo</h3>
+        <div class="galeria galeria--video">
+          <figure>
+            <!-- preload="none": o vídeo (7 MB) só é baixado quando o visitante aperta o play -->
+            <video controls preload="none" playsinline poster="../../img/escritorio-ao-vivo/reel-capa.webp" width="540" height="960">
+              <source src="../../img/escritorio-ao-vivo/reel.mp4" type="video/mp4">
+              <a href="../../img/escritorio-ao-vivo/reel.mp4">Baixar o vídeo</a>
+            </video>
+            <figcaption>O dia inteiro em 27 segundos</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CÓDIGO ================= -->
+    <section class="section section--alt" aria-labelledby="codigo-titulo">
+      <div class="container section-inner">
+        <div class="section-head">
+          <p class="label">por dentro</p>
+          <h2 id="codigo-titulo" class="section-title">O dia cabe numa lista.</h2>
+        </div>
+        <figure class="code-window projeto-codigo">
+          <div class="code-window-bar" aria-hidden="true">
+            <span class="light"></span>
+            <span class="light"></span>
+            <span class="light"></span>
+            <span class="filename" translate="no">simulacao.js</span>
+          </div>
+<pre translate="no" tabindex="0"><code><span class="tok-kw">const</span> T = (h,m)=&gt;h*60+m;
+<span class="tok-kw">const</span> TASKS_DEF = [
+  [<span class="tok-fn">T</span>(8,0),<span class="tok-str">'bruno'</span>,<span class="tok-str">'Conferir e-mails e cobranças'</span>,30],
+  [<span class="tok-fn">T</span>(8,5),<span class="tok-str">'ana'</span>,<span class="tok-str">'Fechar marcações de ponto'</span>,40],
+  [<span class="tok-fn">T</span>(8,12),<span class="tok-str">'robo'</span>,<span class="tok-str">'Enviar 42 holerites no WhatsApp'</span>,6,180],
+  <span class="tok-com">// ...</span>
+];</code></pre>
+          <figcaption>Cada demanda é uma linha: horário de chegada, quem faz, o nome da tarefa e quantos minutos leva. Nas do robô, o último número é quanto levaria à mão.</figcaption>
+        </figure>
+        <figure class="code-window projeto-codigo">
+          <div class="code-window-bar" aria-hidden="true">
+            <span class="light"></span>
+            <span class="light"></span>
+            <span class="light"></span>
+            <span class="filename" translate="no">simulacao.js</span>
+          </div>
+<pre translate="no" tabindex="0"><code><span class="tok-kw">function</span> <span class="tok-fn">finishTask</span>(w,t){
+  w.active=null; w.doneCount++; t.state=<span class="tok-str">'flyOut'</span>;
+  <span class="tok-kw">if</span>(w.robot){
+    savedMin+=t.manual-t.dur;  <span class="tok-com">// tempo à mão menos o tempo do robô</span>
+    <span class="tok-fn">feed</span>(`Robô concluiu: ${t.title} em ${<span class="tok-fn">fmtD</span>(t.dur)} (à mão levaria ${<span class="tok-fn">fmtD</span>(t.manual)})`,<span class="tok-str">'auto'</span>);
+  }
+}</code></pre>
+          <figcaption>Quando o robô termina uma tarefa, a diferença entre o tempo à mão e o tempo dele soma no “tempo poupado” do painel (trecho simplificado).</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= RODAPÉ ================= -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span class="footer-brand">
+        <img src="../../assets/brand/jrdev-simbolo.svg" alt="" width="20" height="20">
+        <span>© <span id="ano">2026</span> JR Dev · JR Tecnologia e Desenvolvimento LTDA · Sertãozinho/SP</span>
+      </span>
+      <span>feito à mão, um commit de cada vez</span>
+    </div>
+  </footer>
+
+</body>
+</html>

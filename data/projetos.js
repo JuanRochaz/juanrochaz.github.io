@@ -8,6 +8,19 @@
    Atenção às vírgulas entre os blocos! */
 window.PROJETOS = [
   {
+    "titulo": "Escritório ao vivo",
+    "descricao": "Simulação 3D de um dia de rotina de RH e financeiro. Mostra, em tempo real, como a automação tira o trabalho repetitivo da equipe: 6 tarefas que levariam 7h25 à mão foram feitas em 21 minutos. (Nomes, tarefas e tempos fictícios.)",
+    "antes": "Holerites, recargas de benefício, alertas de contrato e relatórios feitos à mão, um por um, disputando tempo com o atendimento e as demandas do dia.",
+    "depois": "Um robô de automação assume as tarefas repetitivas, e a equipe fica com o que precisa de gente: conferir, decidir e atender.",
+    "tecnologias": ["Three.js", "JavaScript", "Simulação", "Automação de processos"],
+    "status": "concluído",
+    "imagem": "img/escritorio-ao-vivo.webp",
+    "alt": "Simulação 3D de um escritório com seis pessoas, um robô de automação e demandas coloridas sendo processadas",
+    "pagina": "projetos/escritorio-ao-vivo/",
+    "repo": "",
+    "demo": "projetos/escritorio-ao-vivo/simulacao.html"
+  },
+  {
     "titulo": "Site Maps",
     "descricao": "Ferramenta que transforma o link de uma empresa no Google Maps em um site completo, pronto para publicar. Criada para a prospecção da JR Dev. (Empresas das imagens são fictícias.)",
     "antes": "Montar uma demonstração para cada empresa local sem site: copiar dados do Google, escolher um modelo, escrever os textos e publicar, tudo à mão.",

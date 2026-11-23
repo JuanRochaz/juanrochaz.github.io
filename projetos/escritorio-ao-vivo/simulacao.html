@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escritório ao vivo · JR Dev</title>
+<link rel="icon" href="../../assets/brand/favicon.ico" sizes="any">
+<link rel="icon" href="../../assets/brand/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0E1418;--panel:#131C21;--panel2:#18232A;--line:#22313A;--line2:#2C3E49;
+  --txt:#E8EEF1;--txt2:#9AABB5;--txt3:#6B7D88;--brand:#0E7C5A;--green:#19B37F;--green-bg:rgba(25,179,127,.12);
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--txt);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{display:flex;flex-direction:column;height:100vh}
+header{display:flex;align-items:center;gap:20px;padding:14px 20px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{width:34px;height:34px;display:block}
+.brand h1{font-size:16px;font-weight:600;margin:0;line-height:1.2}
+.brand p{margin:0;font-size:12px;color:var(--txt3)}
+.live{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:500;color:var(--green);background:var(--green-bg);padding:3px 8px;border-radius:20px;margin-left:6px;vertical-align:2px}
+.live i{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 1.4s infinite}
+.live.off{color:var(--txt3);background:var(--panel2)}.live.off i{background:var(--txt3);animation:none}
+@keyframes pulse{50%{opacity:.25}}
+.clockbox{margin-left:auto;display:flex;align-items:center;gap:16px}
+.clock{font-family:'JetBrains Mono',monospace;font-size:26px;letter-spacing:1px}
+.period{font-size:12px;color:var(--txt2);min-width:110px}
+.controls{display:flex;gap:6px;align-items:center}
+button{font:inherit;font-size:13px;color:var(--txt);background:var(--panel2);border:1px solid var(--line2);border-radius:8px;padding:7px 12px;cursor:pointer;transition:background .15s,border-color .15s}
+button:hover{border-color:#3d5563;background:#1d2a32}
+button.on{background:var(--green-bg);border-color:var(--green);color:var(--green)}
+.daybar{height:3px;background:var(--line);position:relative}
+.daybar>i{position:absolute;left:0;top:0;bottom:0;background:var(--green);width:0}
+main{flex:1;display:grid;grid-template-columns:minmax(0,1fr) 360px;min-height:0}
+#stage{position:relative;min-height:520px;overflow:hidden}
+#stage canvas{display:block}
+#labels{position:absolute;inset:0;pointer-events:none;z-index:1}
+aside{border-left:1px solid var(--line);background:var(--panel);display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.sec{padding:14px 18px;border-bottom:1px solid var(--line)}
+.sec h2{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:1px;color:var(--txt3);margin:0 0 12px}
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.m{background:var(--panel2);border-radius:10px;padding:8px 12px}
+.m span{font-size:11px;color:var(--txt3);display:block}
+.m b{font-size:20px;font-weight:600;display:block;margin-top:2px;font-variant-numeric:tabular-nums}
+.m.g b{color:var(--green)}
+.saved{margin-top:8px;background:var(--green-bg);border:1px solid rgba(25,179,127,.3);border-radius:10px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center}
+.saved span{font-size:12px;color:var(--txt2)}
+.saved b{font-size:20px;color:var(--green);font-weight:600;font-variant-numeric:tabular-nums}
+.team{display:flex;flex-direction:column;gap:7px}
+.row{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:4px 10px;align-items:center}
+.dot{width:10px;height:10px;border-radius:3px}
+.row .nm{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .nm small{font-weight:400;color:var(--txt2)}
+.row .q{font-size:11px;color:var(--txt3);text-align:right;white-space:nowrap}
+.row .pb{grid-column:2/4;height:4px;background:var(--line);border-radius:2px;overflow:hidden}
+.row .pb i{display:block;height:100%;width:0}
+.feedsec{flex:1;min-height:0;display:flex;flex-direction:column;border-bottom:none}
+#feed{list-style:none;margin:0;padding:0;overflow-y:auto;flex:1}
+#feed li{font-size:12.5px;line-height:1.45;padding:7px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:42px minmax(0,1fr);gap:8px;animation:fin .4s ease}
+#feed li time{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--txt3);padding-top:1px}
+#feed li.auto span{color:var(--green)}
+#feed li.brk span{color:#F2B544}
+@keyframes fin{from{opacity:0;transform:translateY(-4px)}}
+footer{padding:10px 20px;border-top:1px solid var(--line);font-size:12px;color:var(--txt3);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer a{color:var(--green);text-decoration:none}
+.tag{font-family:Inter,sans-serif;background:rgba(14,20,24,.86);border:1px solid var(--line2);border-radius:8px;padding:5px 8px;min-width:120px;max-width:170px;transform:translateY(-6px)}
+.tag .t1{font-size:11.5px;font-weight:600;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.tag .t1 i{width:7px;height:7px;border-radius:2px;display:inline-block}
+.tag .t2{font-size:10.5px;color:var(--txt2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+.tag .bar{height:3px;background:var(--line2);border-radius:2px;margin-top:4px;overflow:hidden}
+.tag .bar b{display:block;height:100%;width:0}
+.tag.robot{border-color:rgba(25,179,127,.55)}
+.sign{font-size:11px;font-weight:500;color:var(--txt2);background:rgba(14,20,24,.8);border:1px solid var(--line2);padding:3px 8px;border-radius:6px;white-space:nowrap}
+.legend{z-index:2;position:absolute;left:16px;bottom:14px;display:flex;gap:12px;flex-wrap:wrap;font-size:11.5px;color:var(--txt2);background:rgba(14,20,24,.75);border:1px solid var(--line);border-radius:10px;padding:8px 12px;max-width:calc(100% - 32px)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:9px;height:9px;border-radius:2px;display:inline-block}
+.hint{position:absolute;right:16px;bottom:14px;font-size:11.5px;color:var(--txt3)}
+#summary{position:absolute;inset:0;z-index:5;display:none;align-items:center;justify-content:center;background:rgba(14,20,24,.55)}
+#summary.show{display:flex}
+.card{background:var(--panel);border:1px solid var(--line2);border-radius:16px;padding:26px 28px;width:min(440px,calc(100% - 32px))}
+.card h3{margin:0 0 4px;font-size:20px;font-weight:600}
+.card p{margin:0 0 18px;color:var(--txt2);font-size:13.5px;line-height:1.55}
+.card .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px}
+.cmp{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.cmp div{display:grid;grid-template-columns:90px minmax(0,1fr) 56px;align-items:center;gap:10px;font-size:12.5px;color:var(--txt2)}
+.cmp em{display:block;height:10px;border-radius:3px;font-style:normal}
+.cmp b{font-weight:600;color:var(--txt);text-align:right;font-variant-numeric:tabular-nums}
+#err{display:none;position:absolute;inset:0;align-items:center;justify-content:center;color:var(--txt2);font-size:14px;padding:20px;text-align:center}
+@media (max-width:900px){
+  body{height:auto}
+  main{grid-template-columns:1fr}
+  #stage{height:62vh;min-height:420px}
+  aside{border-left:none;border-top:1px solid var(--line);max-height:none}
+  .feedsec{max-height:340px}
+  .clockbox{margin-left:0;width:100%;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  .controls{flex-wrap:wrap}
+  .controls button{min-height:44px}
+  .hint{display:none}
+}
+</style>
+<!-- Mapa de importação: diz ao navegador onde buscar o Three.js. Fica numa linha só porque o _headers libera exatamente este texto (hash). -->
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <img class="logo" src="../../assets/brand/jrdev-simbolo.svg" alt="" width="34" height="34">
+    <div>
+      <h1>Escritório ao vivo <span class="live" id="live"><i></i>ao vivo</span></h1>
+      <p>Simulação de um dia de rotina administrativa · dados fictícios</p>
+    </div>
+  </div>
+  <div class="clockbox">
+    <div>
+      <div class="clock" id="clock">08:00</div>
+      <div class="period" id="period">Início do expediente</div>
+    </div>
+    <div class="controls">
+      <button id="play" aria-label="Pausar">Pausar</button>
+      <button data-sp="1">1x</button>
+      <button data-sp="2" class="on">2x</button>
+      <button data-sp="4">4x</button>
+      <button id="reset">Reiniciar</button>
+    </div>
+  </div>
+</header>
+<div class="daybar"><i id="daybar"></i></div>
+<main>
+  <section id="stage">
+    <div id="labels"></div>
+    <div class="legend" id="legend"></div>
+    <div class="hint">Arraste para girar · role para aproximar</div>
+    <div id="summary"><div class="card">
+      <h3>Expediente encerrado</h3>
+      <p id="sumtxt"></p>
+      <div class="grid">
+        <div class="m"><span>Demandas concluídas</span><b id="s1">0</b></div>
+        <div class="m g"><span>Feitas pelo robô</span><b id="s2">0</b></div>
+      </div>
+      <div class="cmp">
+        <div>Feito à mão<em id="c1" style="background:#EF7D6B"></em><b id="c1t"></b></div>
+        <div>Com automação<em id="c2" style="background:#19B37F"></em><b id="c2t"></b></div>
+      </div>
+      <button id="again" class="on">Rodar o dia de novo</button>
+    </div></div>
+    <div id="err">Não foi possível carregar a cena 3D neste navegador.</div>
+  </section>
+  <aside>
+    <div class="sec">
+      <h2>Painel do dia</h2>
+      <div class="metrics">
+        <div class="m"><span>Recebidas</span><b id="mRec">0</b></div>
+        <div class="m"><span>Na fila</span><b id="mQue">0</b></div>
+        <div class="m"><span>Em andamento</span><b id="mAct">0</b></div>
+        <div class="m g"><span>Concluídas</span><b id="mDone">0</b></div>
+        <div class="m g"><span>Automatizadas</span><b id="mAuto">0</b></div>
+        <div class="m"><span>Espera média</span><b id="mWait">0 min</b></div>
+      </div>
+      <div class="saved"><span>Tempo poupado pela automação</span><b id="mSaved">0 min</b></div>
+    </div>
+    <div class="sec">
+      <h2>Equipe</h2>
+      <div class="team" id="team"></div>
+    </div>
+    <div class="sec feedsec">
+      <h2>Linha do tempo</h2>
+      <ul id="feed"></ul>
+    </div>
+  </aside>
+</main>
+<footer>
+  <span>Simulação ilustrativa: nomes, tarefas e tempos são fictícios.</span>
+  <span><a href="./">← Voltar ao projeto</a> · Desenvolvido por <a href="../../">JR Dev</a> · jrdevtecnologia.com.br</span>
+</footer>
+
+<script type="module" src="simulacao.js"></script>
+</body>
+</html>

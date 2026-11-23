@@ -196,6 +196,19 @@
   color: var(--text-muted);
 }
 
+/* Vídeo vertical (Reel): estreito, como a tela de um celular */
+.galeria--video {
+  max-width: 320px;
+}
+
+.galeria video {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border-card);
+  border-radius: 18px;
+  background: var(--surface);
+}
+
 .galeria-subtitulo {
   margin-bottom: -8px;
 }
