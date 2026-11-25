@@ -11,8 +11,20 @@
    (carregado antes deste arquivo no HTML). Aqui só damos "apelidos"
    a essas variáveis, para o resto do CSS continuar igual.
    Regra da marca: nada de cor solta (#...) — tudo sai de tokens.css.
-   color-mix() mistura duas cores da marca para criar um tom do meio. */
+   color-mix() mistura duas cores da marca para criar um tom do meio.
+
+   PALETA GRAFITE (25/11/2026): o tokens.css continua intacto; aqui só
+   trocamos o fundo azulado (o mesmo do GitHub) por um grafite neutro.
+   Como este arquivo carrega depois, estes valores vencem os do tokens.css.
+   O verde-menta da marca fica só no logo e no botão principal. */
 :root {
+  --fundo: #1A1C1B;        /* grafite */
+  --superficie: #232624;   /* cartões */
+  --linha: #343835;        /* divisórias */
+  --texto: #ECEEEA;
+  --texto-suave: #A3A8A3;
+  --sobre-menta: #1A1C1B;  /* texto em cima do botão verde */
+
   /* fundos */
   --bg: var(--fundo);
   --bg-alt: color-mix(in srgb, var(--fundo) 60%, var(--superficie)); /* seções alternadas */
@@ -96,7 +108,7 @@ a {
 }
 
 a:hover {
-  color: var(--accent);
+  color: var(--text);
 }
 
 /* Foco visível só para quem navega pelo teclado */
@@ -214,7 +226,9 @@ img {
 
 /* Link da seção visível na tela (marcado pelo main.js) */
 .nav-links a[aria-current="true"] {
-  color: var(--accent);
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 8px;
 }
 
 /* Em telas médias, menos espaço entre os links para tudo caber */
@@ -224,17 +238,17 @@ img {
 
 .btn-pill {
   padding: 10px 18px;
-  border: 1px solid var(--accent);
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-btn);
-  color: var(--accent);
+  color: var(--text);
   min-height: 44px;
   display: inline-flex;
   align-items: center;
 }
 
 .btn-pill:hover {
-  background: var(--accent);
-  color: var(--sobre-menta);
+  border-color: var(--text-muted);
+  background: var(--surface);
 }
 
 /* Botão hambúrguer: escondido no desktop */
@@ -253,8 +267,8 @@ img {
 }
 
 .nav-toggle:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: var(--text-muted);
+  color: var(--text);
 }
 
 /* ---------- 5. HERO ---------- */
@@ -339,10 +353,13 @@ img {
   color: var(--text-soft);
 }
 
+/* Rótulo curto (hero, caso real, "Como funciona"): texto comum,
+   sem fonte mono nem cor de destaque */
 .label {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  color: var(--accent);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-soft);
 }
 
 .section-title {
@@ -439,7 +456,7 @@ img {
 
 .code-window-bar .filename {
   margin-left: 10px;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 13px;
   color: var(--text-muted);
 }
@@ -447,7 +464,7 @@ img {
 .code-window pre {
   margin: 0;
   padding: 24px;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 15px;
   line-height: 1.8;
   color: var(--text);
@@ -522,7 +539,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 13px;
   color: var(--text-muted);
 }
@@ -571,7 +588,7 @@ img {
 }
 
 .antes-depois dt {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 12px;
   padding-top: 3px; /* alinha o rótulo com a 1ª linha do texto */
 }
@@ -579,11 +596,11 @@ img {
 .antes-depois dd { margin: 0; }
 
 .antes-depois-antes { color: var(--text-muted); }
-.antes-depois-depois { color: var(--accent); }
+.antes-depois-depois { color: var(--text); font-weight: 600; }
 .antes-depois-depois + dd { color: var(--text); }
 
 .project-body .tech {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 13px;
   color: var(--text-soft);
 }
@@ -594,7 +611,7 @@ img {
   gap: 18px;
   margin-top: auto; /* empurra os links para o fim do card */
   padding-top: 6px;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 14px;
 }
 
@@ -603,17 +620,19 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: var(--accent);
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 4px;
 }
 
 .project-links a:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
+  text-decoration-color: var(--text);
 }
 
 .projects-message {
   color: var(--text-muted);
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 14px;
 }
 
@@ -666,7 +685,7 @@ img {
 }
 
 .curso .curso-tech {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 13px;
   color: var(--text-soft);
 }
@@ -682,22 +701,25 @@ img {
   display: inline-flex;
   align-items: center;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 4px;
 }
 
-.curso-links a:hover { text-decoration: underline; }
+.curso-links a:hover { text-decoration-color: var(--text); }
 
 /* Selos de status */
 .badge {
   align-self: flex-start;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 12px;
   padding: 5px 10px;
   border-radius: 999px;
 }
 
-.badge--concluido  { background: var(--menta-fundo); color: var(--menta); }
-.badge--construcao { background: transparent; color: var(--menta); box-shadow: inset 0 0 0 1px var(--menta); }
+.badge--concluido  { background: var(--surface-2); color: var(--text-soft); }
+.badge--construcao { background: transparent; color: var(--text-soft); box-shadow: inset 0 0 0 1px var(--border-strong); }
 .badge--ideia      { background: var(--marca-texto); color: var(--texto); }
 .badge--pessoal    { background: var(--apoio-azul-fundo); color: var(--apoio-azul); }
 
@@ -741,7 +763,7 @@ img {
 
 .chip-row-label {
   width: 110px;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 13px;
   color: var(--text-muted);
 }
@@ -752,7 +774,7 @@ img {
   font-size: 15px;
 }
 
-.chip--uso       { border: 1px solid var(--accent); }
+.chip--uso       { border: 1px solid var(--border-strong); }
 .chip--estudando { border: 1px dashed var(--border-dashed); }
 
 /* Serviços: os cartões reaproveitam .card; aqui só a faixa "Como funciona" */
@@ -785,7 +807,7 @@ img {
 
 /* Número do passo em mono: 01, 02, 03 */
 .step-num {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 14px;
   color: var(--accent);
 }
@@ -845,10 +867,13 @@ img {
   display: inline-flex;
   align-items: center;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 4px;
 }
 
-.hero-caso-link:hover { text-decoration: underline; }
+.hero-caso-link:hover { text-decoration-color: var(--text); }
 
 /* Sobre: três pontos em linhas, separados por um fio (sem cards).
    No computador: título à esquerda, texto à direita. */
@@ -876,7 +901,7 @@ img {
   max-width: 62ch;
 }
 
-/* Serviços: lista numerada; cada linha = número | texto | exemplo real */
+/* Serviços: lista; cada linha = texto | exemplo real */
 .servicos {
   list-style: none;
   margin: 0;
@@ -886,17 +911,11 @@ img {
 
 .servico {
   display: grid;
-  grid-template-columns: 48px minmax(0, 1fr) minmax(0, 220px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 220px);
   gap: 12px 32px;
   align-items: baseline;
   padding: 28px 0;
   border-top: 1px solid var(--border);
-}
-
-.servico-num {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  color: var(--accent);
 }
 
 .servico-texto {
@@ -920,17 +939,20 @@ img {
 }
 
 .servico-exemplo a {
-  color: var(--accent);
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 4px;
   display: inline-flex;
   align-items: center;
   min-height: 44px;
 }
 
-.servico-exemplo a:hover { text-decoration: underline; }
+.servico-exemplo a:hover { text-decoration-color: var(--text); }
 
 .servico-exemplo-rotulo {
   display: block;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 12px;
   color: var(--text-muted);
 }
@@ -982,19 +1004,19 @@ img {
   background: var(--dot);
 }
 
-.timeline-item--atual::before  { background: var(--accent); }
+.timeline-item--atual::before  { background: var(--text); }
 .timeline-item--proximo::before {
   background: var(--bg);
-  border: 2px dashed var(--accent);
+  border: 2px dashed var(--text-muted);
 }
 
 .timeline-item .when {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 13px;
   color: var(--text-muted);
 }
 
-.timeline-item--atual .when { color: var(--accent); }
+.timeline-item--atual .when { color: var(--text); }
 
 .timeline-item h3 { font-size: 20px; }
 
@@ -1021,7 +1043,6 @@ img {
   max-width: 900px;
 }
 
-.contact-title .highlight { color: var(--accent); }
 
 .site-footer {
   border-top: 1px solid var(--border);
@@ -1047,7 +1068,7 @@ img {
   gap: 12px;
   padding-top: 28px;
   padding-bottom: 28px;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 13px;
   color: var(--text-muted);
 }
@@ -1092,8 +1113,7 @@ img {
 
   /* Linhas do Sobre e dos Serviços viram uma coluna só no celular */
   .linha { grid-template-columns: 1fr; padding: 24px 0; }
-  .servico { grid-template-columns: 32px minmax(0, 1fr); padding: 24px 0; }
-  .servico-exemplo { grid-column: 2; }
+  .servico { grid-template-columns: 1fr; padding: 24px 0; }
 
   .chip-row-label { width: 100%; }
 

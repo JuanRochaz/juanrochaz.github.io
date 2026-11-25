@@ -11,7 +11,7 @@
 window.PROJETOS = [
   {
     "titulo": "Escritório ao vivo",
-    "descricao": "Simulação 3D de um dia de rotina de RH e financeiro. Mostra, em tempo real, como a automação tira o trabalho repetitivo da equipe: 6 tarefas que levariam 7h25 à mão foram feitas em 21 minutos. (Nomes, tarefas e tempos fictícios.)",
+    "descricao": "Simulação 3D de um dia de rotina de RH e financeiro. Mostra, em tempo real, a automação fazendo as tarefas repetitivas enquanto a equipe atende. (Nomes e tarefas fictícios.)",
     "antes": "Holerites, recargas de benefício, alertas de contrato e relatórios feitos à mão, um por um, disputando tempo com o atendimento e as demandas do dia.",
     "depois": "Um robô de automação assume as tarefas repetitivas, e a equipe fica com o que precisa de gente: conferir, decidir e atender.",
     "tecnologias": ["Three.js", "JavaScript", "Simulação", "Automação de processos"],

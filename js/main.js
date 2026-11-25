@@ -200,7 +200,7 @@ function criarCardProjeto(projeto) {
 
   const tecnologias = document.createElement('p');
   tecnologias.className = 'tech';
-  tecnologias.textContent = projeto.tecnologias.join(' · ');
+  tecnologias.textContent = projeto.tecnologias.join(', ');
   corpo.appendChild(tecnologias);
 
   // Links (só aparecem se existirem nos dados).
@@ -249,7 +249,7 @@ function criarItemCurso(projeto) {
 
   const tecnologias = document.createElement('p');
   tecnologias.className = 'curso-tech';
-  tecnologias.textContent = projeto.tecnologias.join(' · ');
+  tecnologias.textContent = projeto.tecnologias.join(', ');
   item.appendChild(tecnologias);
 
   const links = document.createElement('p');
