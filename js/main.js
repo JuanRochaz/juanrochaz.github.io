@@ -3,9 +3,8 @@
    1. Ano automático no rodapé
    2. Menu mobile (botão hambúrguer)
    3. Destacar no menu a seção que está na tela
-   4. Trocar de versão mantendo a seção atual
-   5. Montar os cards de projetos a partir de data/projetos.js
-   6. Carrossel de projetos (Swiper: arrastar, teclado e botões)
+   4. Montar a grade de projetos e a lista de cursos
+      a partir de data/projetos.js
    ========================================================= */
 
 
@@ -71,14 +70,12 @@ if (botaoMenu && menu) {
    quando uma delas entra no meio da tela. */
 const linksMenu = document.querySelectorAll('.nav-links a[href^="#"]');
 const secoes = document.querySelectorAll('main section[id]');
-let secaoVisivel = ''; // guardada para a troca de versão (parte 4)
 
 const observador = new IntersectionObserver(function (entradas) {
   entradas.forEach(function (entrada) {
     if (!entrada.isIntersecting) return;
 
     const idVisivel = entrada.target.id;
-    secaoVisivel = idVisivel;
     linksMenu.forEach(function (link) {
       const ehOAtual = link.getAttribute('href') === '#' + idVisivel;
       if (ehOAtual) {
@@ -95,30 +92,7 @@ secoes.forEach(function (secao) {
 });
 
 
-/* ---------- 4. TROCAR DE VERSÃO (escura ↔ planilha) ----------
-   As duas versões têm as mesmas seções (#sobre, #projetos...).
-   Ao trocar, levamos o visitante para a mesma seção que ele estava
-   lendo, em vez de jogá-lo de volta para o topo. */
-document.querySelectorAll('[data-trocar-versao]').forEach(function (link) {
-  // O link aponta para a pasta ("versao-2/" ou "../"), que funciona no
-  // GitHub Pages. Aberto com dois cliques (file://), o navegador mostraria
-  // a lista de arquivos da pasta, então completamos com "index.html".
-  if (location.protocol === 'file:' && link.href.endsWith('/')) {
-    link.href = link.href + 'index.html';
-  }
-
-  link.addEventListener('click', function (evento) {
-    // Ctrl/Cmd/Shift + clique (abrir em nova aba): deixa o navegador agir
-    if (evento.ctrlKey || evento.metaKey || evento.shiftKey || evento.button !== 0) return;
-    if (!secaoVisivel || secaoVisivel === 'topo') return; // no topo, link normal
-
-    evento.preventDefault();
-    location.href = link.href.split('#')[0] + '#' + secaoVisivel;
-  });
-});
-
-
-/* ---------- 5. PROJETOS ----------
+/* ---------- 4. PROJETOS ----------
    Os dados ficam em data/projetos.js (variável window.PROJETOS).
    Para adicionar um projeto, edite só esse arquivo — não o HTML.
    Por ser um <script> (e não um fetch de JSON), funciona até
@@ -150,7 +124,7 @@ function problemasDoProjeto(projeto) {
 
 // Os caminhos de imagem em projetos.js (ex.: "img/painel.webp") são
 // relativos à RAIZ do site. Para funcionarem também em páginas dentro
-// de subpastas (como versao-2/), calculamos a raiz a partir de onde
+// de subpastas (como projetos/site-maps/), calculamos a raiz a partir de onde
 // o próprio data/projetos.js foi carregado: a pasta acima de data/.
 const scriptDados = document.querySelector('script[src$="projetos.js"]');
 const raizDoSite = scriptDados ? new URL('../', scriptDados.src) : new URL('./', location.href);
@@ -233,7 +207,7 @@ function criarCardProjeto(projeto) {
   // "pagina" é a página do projeto aqui no site: abre na mesma aba.
   const links = [];
   if (projeto.pagina) links.push({ texto: 'Ver detalhes', url: new URL(projeto.pagina, raizDoSite).href, mesmaAba: true });
-  if (projeto.repo) links.push({ texto: 'Código', url: projeto.repo });
+  if (projeto.repo) links.push({ texto: 'Ver código', url: projeto.repo });
   if (projeto.demo) links.push({ texto: 'Ver online', url: new URL(projeto.demo, raizDoSite).href });
 
   if (links.length > 0) {
@@ -242,7 +216,7 @@ function criarCardProjeto(projeto) {
     links.forEach(function (item) {
       const a = document.createElement('a');
       a.href = item.url;
-      a.textContent = item.texto + ' →';
+      a.textContent = item.texto;
       if (item.mesmaAba) {
         a.setAttribute('aria-label', item.texto + ' de ' + projeto.titulo);
       } else {
@@ -259,11 +233,52 @@ function criarCardProjeto(projeto) {
   return card;
 }
 
+// Cria UMA linha da lista "Exercícios de curso": título, descrição curta,
+// tecnologias e links. Sem imagem, para ocupar pouco espaço.
+function criarItemCurso(projeto) {
+  const item = document.createElement('li');
+  item.className = 'curso';
+
+  const titulo = document.createElement('h4');
+  titulo.textContent = projeto.titulo;
+  item.appendChild(titulo);
+
+  const descricao = document.createElement('p');
+  descricao.textContent = projeto.descricao;
+  item.appendChild(descricao);
+
+  const tecnologias = document.createElement('p');
+  tecnologias.className = 'curso-tech';
+  tecnologias.textContent = projeto.tecnologias.join(' · ');
+  item.appendChild(tecnologias);
+
+  const links = document.createElement('p');
+  links.className = 'curso-links';
+  if (projeto.repo) links.appendChild(criarLinkExterno('Ver código', projeto.repo, projeto.titulo));
+  if (projeto.demo) links.appendChild(criarLinkExterno('Ver online', projeto.demo, projeto.titulo));
+  if (links.children.length > 0) item.appendChild(links);
+
+  return item;
+}
+
+// Link que abre em nova aba, avisando isso para leitores de tela
+function criarLinkExterno(texto, url, tituloDoProjeto) {
+  const a = document.createElement('a');
+  a.href = url;
+  a.textContent = texto;
+  a.target = '_blank';
+  a.rel = 'noopener';
+  a.setAttribute('aria-label', texto + ' de ' + tituloDoProjeto + ' (abre em nova aba)');
+  return a;
+}
+
 // Coloca todos os cards válidos na página.
 // Mensagens para o visitante vão no #projetos-status; detalhes técnicos,
 // no console do navegador (F12 → Console), para você descobrir o erro.
 function mostrarProjetos() {
   const lista = document.getElementById('lista-projetos');
+  const listaCursos = document.getElementById('lista-cursos');
+  const blocoCursos = document.getElementById('bloco-cursos');
   const status = document.getElementById('projetos-status');
   if (!lista || !status) return;
 
@@ -290,7 +305,12 @@ function mostrarProjetos() {
       console.error('Projeto nº ' + (posicao + 1) + ' em data/projetos.js foi ignorado: ' + problemas.join('; '));
       return;
     }
-    lista.appendChild(criarCardProjeto(projeto));
+    if (projeto.tipo === 'curso' && listaCursos) {
+      listaCursos.appendChild(criarItemCurso(projeto));
+      if (blocoCursos) blocoCursos.hidden = false; // só aparece se tiver curso
+    } else {
+      lista.appendChild(criarCardProjeto(projeto));
+    }
     quantosMostrados = quantosMostrados + 1;
   });
 
@@ -300,58 +320,3 @@ function mostrarProjetos() {
 }
 
 mostrarProjetos();
-
-
-/* ---------- 6. CARROSSEL DE PROJETOS (só na versão escura) ----------
-   Quem faz o carrossel é o Swiper, a mesma biblioteca do AluraBooks.
-   Ele cuida de arrastar com o mouse ou o dedo, das setas do teclado
-   e dos botões ← e →. Aqui só dizemos como ele deve se comportar. */
-function prepararCarrossel() {
-  const carrossel = document.querySelector('.carrossel');
-  const areaBotoes = document.querySelector('[data-carrossel-botoes]');
-  // A versão planilha não tem carrossel: nada a fazer
-  if (!carrossel || !areaBotoes) return;
-
-  // Se o Swiper não carregou (internet instável, por exemplo), o CSS
-  // deixa a fila rolar para o lado sozinha e os botões ficam escondidos.
-  if (typeof window.Swiper !== 'function') {
-    console.warn('Swiper não carregou: o carrossel usa a rolagem simples.');
-    return;
-  }
-
-  // O Swiper pede a classe "swiper-slide" em cada item da fila
-  carrossel.querySelectorAll('.project').forEach(function (card) {
-    card.classList.add('swiper-slide');
-  });
-
-  // Os botões só aparecem quando há mais cards do que cabem na tela.
-  // "lock" = tudo cabe, "unlock" = sobrou card fora da tela.
-  function mostrarBotoes(swiper) {
-    areaBotoes.hidden = swiper.isLocked;
-  }
-
-  new window.Swiper(carrossel, {
-    slidesPerView: 'auto',  // a largura de cada card vem do CSS
-    spaceBetween: 20,       // espaço entre os cards, em pixels
-    grabCursor: true,       // cursor de "mãozinha" para arrastar
-    // Quem pediu menos animação no sistema vê a troca sem deslizar
-    speed: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 400,
-    keyboard: { enabled: true, onlyInViewport: true },
-    navigation: {
-      prevEl: '[data-carrossel="anterior"]',
-      nextEl: '[data-carrossel="proximo"]',
-    },
-    a11y: {
-      prevSlideMessage: 'Projeto anterior',
-      nextSlideMessage: 'Próximo projeto',
-      slideLabelMessage: 'Projeto {{index}} de {{slidesLength}}',
-    },
-    on: {
-      init: mostrarBotoes,
-      lock: mostrarBotoes,
-      unlock: mostrarBotoes,
-    },
-  });
-}
-
-prepararCarrossel();

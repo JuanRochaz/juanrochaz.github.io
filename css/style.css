@@ -38,8 +38,8 @@
   /* layout */
   --container: 1200px;
   --gutter: 24px;
-  --radius-card: var(--radius-md);
-  --radius-btn: var(--radius-md);
+  --radius-card: var(--radius-sm); /* cantos discretos: 6px */
+  --radius-btn: var(--radius-sm);
   --nav-height: 76px;
 
   color-scheme: dark; /* barras de rolagem e campos nativos no modo escuro */
@@ -217,16 +217,6 @@ img {
   color: var(--accent);
 }
 
-/* Link "Versão planilha": discreto, separado dos links de seção */
-.theme-switch {
-  gap: 8px;
-  color: var(--text-muted);
-  padding-left: 20px !important;
-  border-left: 1px solid var(--border-strong);
-}
-
-.theme-switch:hover { color: var(--accent); }
-
 /* Em telas médias, menos espaço entre os links para tudo caber */
 @media (min-width: 941px) and (max-width: 1100px) {
   .nav-links { gap: 18px; }
@@ -235,7 +225,7 @@ img {
 .btn-pill {
   padding: 10px 18px;
   border: 1px solid var(--accent);
-  border-radius: 999px;
+  border-radius: var(--radius-btn);
   color: var(--accent);
   min-height: 44px;
   display: inline-flex;
@@ -621,77 +611,81 @@ img {
   text-underline-offset: 4px;
 }
 
-/* Carrossel de projetos
-   Quem move a fila é o Swiper (js/main.js). Cada card tem 380px, ou 85%
-   da largura no celular: assim aparece um pedaço do próximo card,
-   convidando a arrastar. */
-.carrossel {
-  /* o CSS do Swiper centraliza com margem automática; sem esta linha,
-     no celular a fila ficaria mais larga que a tela */
-  width: 100%;
-}
-
-.carrossel .project {
-  width: min(380px, 85%);
-  height: auto;      /* todos os cards com a altura do mais alto */
-}
-
-/* Plano B: se o Swiper não carregar, a fila rola para o lado
-   com o dedo ou a barra de rolagem, como antes. */
-.carrossel:not(.swiper-initialized) {
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 16px;
-}
-.carrossel:not(.swiper-initialized) .swiper-wrapper {
-  gap: 20px;
-}
-.carrossel:not(.swiper-initialized) .project {
-  flex: 0 0 min(380px, 85%);
-  scroll-snap-align: start;
-}
-
-.carrossel-botoes {
-  display: flex;
-  gap: 12px;
-}
-
-.carrossel-botoes[hidden] {
-  display: none;
-}
-
-.carrossel-botao {
-  width: 48px;
-  height: 48px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-  border: 1px solid var(--border-strong);
-  background: transparent;
-  color: var(--text);
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.carrossel-botao:hover:not(:disabled) {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-/* No começo da fila o "←" fica apagado; no fim, o "→" */
-.carrossel-botao:disabled,
-.carrossel-botao.swiper-button-disabled {
-  opacity: 0.35;
-  cursor: default;
-}
-
-
 .projects-message {
   color: var(--text-muted);
   font-family: var(--font-mono);
   font-size: 14px;
 }
+
+/* Exercícios de curso: lista compacta embaixo da grade, sem imagens */
+.cursos {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+}
+
+.cursos[hidden] { display: none; }
+
+.cursos-titulo { font-size: 22px; }
+
+.cursos-intro {
+  font-size: 16px;
+  color: var(--text-muted);
+}
+
+.cursos-lista {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0 40px;
+  grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
+}
+
+.curso {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.curso h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.curso p {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.curso .curso-tech {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+.curso-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 20px;
+}
+
+.curso-links a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.curso-links a:hover { text-decoration: underline; }
 
 /* Selos de status */
 .badge {
@@ -807,6 +801,151 @@ img {
   font-size: 16px;
   line-height: 1.6;
   color: var(--text-muted);
+}
+
+/* Hero: caso real (print + antes x depois), no lugar da janela de código */
+.hero-caso {
+  flex: 1 1 420px;
+  min-width: 0;
+  margin: 0; /* <figure> vem com margem padrão do navegador */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hero-caso-img {
+  display: block;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--surface-2);
+  aspect-ratio: 2 / 1; /* os prints são 1200×600 */
+}
+
+.hero-caso-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-caso-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* No hero o "antes x depois" fica um pouco maior que nos cards */
+.hero-caso .antes-depois {
+  font-size: 16px;
+}
+
+.hero-caso-link {
+  align-self: flex-start;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.hero-caso-link:hover { text-decoration: underline; }
+
+/* Sobre: três pontos em linhas, separados por um fio (sem cards).
+   No computador: título à esquerda, texto à direita. */
+.linhas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.linha {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 12px 48px;
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
+}
+
+.linha h3 { font-size: 21px; }
+
+.linha p {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-soft);
+  max-width: 62ch;
+}
+
+/* Serviços: lista numerada; cada linha = número | texto | exemplo real */
+.servicos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.servico {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) minmax(0, 220px);
+  gap: 12px 32px;
+  align-items: baseline;
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
+}
+
+.servico-num {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--accent);
+}
+
+.servico-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.servico-texto h3 { font-size: 21px; }
+
+.servico-texto p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: 62ch;
+}
+
+.servico-exemplo {
+  font-size: 15px;
+  color: var(--text-soft);
+}
+
+.servico-exemplo a {
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.servico-exemplo a:hover { text-decoration: underline; }
+
+.servico-exemplo-rotulo {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* "Como funciona" em uma frase */
+.processo {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-soft);
+  max-width: 70ch;
+}
+
+.processo .label {
+  display: block;
+  margin-bottom: 6px;
 }
 
 /* ---------- 8. TIMELINE ---------- */
@@ -937,13 +1076,6 @@ img {
   .nav-links.is-open { display: flex; }
 
   .nav-links a:not(.btn-pill) { padding: 0 4px; }
-  /* no menu do celular o separador vira uma linha em cima */
-  .theme-switch {
-    border-left: 0;
-    border-top: 1px solid var(--border);
-    padding-left: 4px !important;
-    margin-top: 4px;
-  }
   .btn-pill { justify-content: center; margin-top: 8px; }
 }
 
@@ -957,6 +1089,11 @@ img {
   .contact { padding-top: 80px; padding-bottom: 80px; }
 
   .code-window pre { font-size: 13.5px; padding: 20px; }
+
+  /* Linhas do Sobre e dos Serviços viram uma coluna só no celular */
+  .linha { grid-template-columns: 1fr; padding: 24px 0; }
+  .servico { grid-template-columns: 32px minmax(0, 1fr); padding: 24px 0; }
+  .servico-exemplo { grid-column: 2; }
 
   .chip-row-label { width: 100%; }
 

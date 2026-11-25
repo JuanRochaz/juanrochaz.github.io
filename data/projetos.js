@@ -5,6 +5,8 @@
    (mostra o botão "Ver detalhes"). "alt" é opcional: descrição da imagem.
    "antes" e "depois" são opcionais: como a tarefa era feita à mão
    e como ficou com a automação. Sem eles, o card não mostra esse bloco.
+   "tipo": "curso" é opcional: o projeto vai para a lista compacta
+   "Exercícios de curso", embaixo da grade, em vez de virar um card.
    Atenção às vírgulas entre os blocos! */
 window.PROJETOS = [
   {
@@ -81,6 +83,7 @@ window.PROJETOS = [
   },
   {
     "titulo": "Alura MIDI",
+    "tipo": "curso",
     "descricao": "Teclado de sons no navegador: cada botão toca um instrumento, com clique ou pelo teclado (Enter e Espaço). Exercício de eventos e manipulação do DOM.",
     "tecnologias": ["HTML", "CSS", "JavaScript"],
     "status": "concluído",
@@ -90,6 +93,7 @@ window.PROJETOS = [
   },
   {
     "titulo": "AluraBooks",
+    "tipo": "curso",
     "descricao": "Página de uma livraria on-line com menu de categorias que abre no celular sem JavaScript, só com HTML e CSS.",
     "tecnologias": ["HTML", "CSS", "responsivo"],
     "status": "concluído",
@@ -99,6 +103,7 @@ window.PROJETOS = [
   },
   {
     "titulo": "Alura Plus",
+    "tipo": "curso",
     "descricao": "Página de venda de um plano de assinatura de cursos, adaptada para TV, computador, tablet e celular.",
     "tecnologias": ["HTML", "CSS", "responsivo"],
     "status": "concluído",
@@ -108,6 +113,7 @@ window.PROJETOS = [
   },
   {
     "titulo": "Curiosidade de Tecnologia",
+    "tipo": "curso",
     "descricao": "Meu primeiro site: a história do mascote do Android, feito acompanhando o Curso em Vídeo.",
     "tecnologias": ["HTML", "CSS"],
     "status": "concluído",
