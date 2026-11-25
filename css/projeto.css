@@ -13,17 +13,17 @@
   gap: 28px;
 }
 
-/* Link "← Voltar aos projetos" */
+/* Link "Voltar aos projetos" */
 .voltar {
   align-self: flex-start;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 14px;
   color: var(--text-muted);
   padding: 12px 0; /* área de toque maior */
 }
 
 .voltar:hover {
-  color: var(--accent);
+  color: var(--text);
 }
 
 .projeto-resumo {
@@ -41,8 +41,13 @@
 }
 
 .projeto-texto a {
-  color: var(--accent);
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 4px;
 }
+
+.projeto-texto a:hover { text-decoration-color: var(--text); }
 
 /* Código dentro do texto, ex.: /site-maps <link> */
 .projeto-texto code,
@@ -66,11 +71,10 @@
 }
 
 .projeto-tags li {
-  font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 14px;
   padding: 6px 12px;
   border: 1px solid var(--border-strong);
-  border-radius: 999px;
+  border-radius: var(--radius-btn);
   color: var(--text-soft);
 }
 
@@ -105,15 +109,15 @@
   position: absolute;
   left: 20px;
   top: 18px;
-  font-family: var(--font-mono);
-  color: var(--accent);
+  font-weight: 600;
+  color: var(--text-muted);
 }
 
 .passos strong {
   color: var(--text);
 }
 
-/* Lista de destaques com marcador da marca */
+/* Lista de destaques com um marcador discreto */
 .destaques {
   display: grid;
   gap: 12px;
@@ -131,11 +135,10 @@
 }
 
 .destaques li::before {
-  content: '›';
+  content: '•';
   position: absolute;
-  left: 4px;
-  color: var(--accent);
-  font-family: var(--font-mono);
+  left: 6px;
+  color: var(--text-muted);
 }
 
 /* Solução e resultado lado a lado no computador */
@@ -191,8 +194,7 @@
 
 .galeria figcaption,
 .projeto-codigo figcaption {
-  font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-muted);
 }
 

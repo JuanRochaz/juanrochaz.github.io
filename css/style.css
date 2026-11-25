@@ -456,7 +456,7 @@ img {
 
 .code-window-bar .filename {
   margin-left: 10px;
-  font-family: var(--font-sans);
+  font-family: var(--font-mono);
   font-size: 13px;
   color: var(--text-muted);
 }
@@ -464,7 +464,7 @@ img {
 .code-window pre {
   margin: 0;
   padding: 24px;
-  font-family: var(--font-sans);
+  font-family: var(--font-mono); /* código continua em mono */
   font-size: 15px;
   line-height: 1.8;
   color: var(--text);
