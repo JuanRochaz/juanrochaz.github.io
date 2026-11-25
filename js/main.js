@@ -126,7 +126,7 @@ function problemasDoProjeto(projeto) {
 // relativos à RAIZ do site. Para funcionarem também em páginas dentro
 // de subpastas (como projetos/site-maps/), calculamos a raiz a partir de onde
 // o próprio data/projetos.js foi carregado: a pasta acima de data/.
-const scriptDados = document.querySelector('script[src$="projetos.js"]');
+const scriptDados = document.querySelector('script[src*="projetos.js"]');
 const raizDoSite = scriptDados ? new URL('../', scriptDados.src) : new URL('./', location.href);
 
 // Cria o HTML de UM card a partir de um objeto de projeto
